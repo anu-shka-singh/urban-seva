@@ -1,6 +1,5 @@
+import 'package:complaint_app/user_dashboard.dart';
 import 'package:flutter/material.dart';
-
-import 'select_problem.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +11,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      home: SelectUserTypePage(),
+      home: Dashboard(
+        user: const {'name': 'Diya', 'address': 'Laxmi Nagar, Delhi'},
+      ),
       debugShowCheckedModeBanner: false,
     );
   }

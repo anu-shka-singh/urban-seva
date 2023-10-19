@@ -51,10 +51,9 @@ class BarGraphCard extends StatelessWidget {
                   ),
                 ),
               ),
-
-              Container(
-                height: 130,  // Set your desired height
-                width: 700,   // Set your desired width
+              SizedBox(
+                height: 130, // Set your desired height
+                width: 700, // Set your desired width
                 child: BarChart(
                   BarChartData(
                     barGroups: _chartGroups(
@@ -121,16 +120,16 @@ class BarGraphCard extends StatelessWidget {
       {required List<GraphModel> points, required Color color}) {
     return points
         .map((point) => BarChartGroupData(x: point.x.toInt(), barRods: [
-      BarChartRodData(
-        toY: point.y,
-        width: 30,
-        color: color.withOpacity(point.y.toInt() > 4 ? 1 : 0.4),
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(3.0),
-          topRight: Radius.circular(3.0),
-        ),
-      )
-    ]))
+              BarChartRodData(
+                toY: point.y,
+                width: 30,
+                color: color.withOpacity(point.y.toInt() > 4 ? 1 : 0.4),
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(3.0),
+                  topRight: Radius.circular(3.0),
+                ),
+              )
+            ]))
         .toList();
   }
 }

@@ -2,7 +2,6 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dashboard/responsive.dart';
 
-
 class Profile extends StatelessWidget {
   const Profile({Key? key}) : super(key: key);
 
@@ -23,9 +22,12 @@ class Profile extends StatelessWidget {
           child: Column(
             children: [
               // Pie Chart
-              SizedBox(height: 40.0),
-              Text("Reported Issues", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 40.0),
+              const Text(
+                "Reported Issues",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 20.0),
               Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -35,35 +37,40 @@ class Profile extends StatelessWidget {
                       color: Colors.grey.withOpacity(0.3),
                       spreadRadius: 3,
                       blurRadius: 5,
-                      offset: Offset(0, 3),
+                      offset: const Offset(0, 3),
                     ),
                   ],
                 ),
-                child: PieChartWidget(),
+                child: const PieChartWidget(),
               ),
 
               // SizedBox
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
 
               // Four Tiles
-              Column(
+              const Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  ProfileTile(icon: Icons.directions_car, title: "Roads and Transportation"),
+                  ProfileTile(
+                      icon: Icons.directions_car,
+                      title: "Roads and Transportation"),
                   ProfileTile(icon: Icons.opacity, title: "Water and Sewer"),
-                  ProfileTile(icon: Icons.power, title: "Electricity and Power"),
+                  ProfileTile(
+                      icon: Icons.power, title: "Electricity and Power"),
                   ProfileTile(icon: Icons.delete, title: "Sanitation"),
                 ],
               ),
             ],
-
           ),
         ),
       ),
     );
   }
 }
+
 class PieChartWidget extends StatelessWidget {
+  const PieChartWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     List<PieChartSectionData> sections = [
@@ -95,7 +102,7 @@ class PieChartWidget extends StatelessWidget {
 
     return Column(
       children: [
-        Container(
+        SizedBox(
           height: 200,
           child: PieChart(
             PieChartData(
@@ -107,21 +114,20 @@ class PieChartWidget extends StatelessWidget {
             ),
           ),
         ),
-
         Column(
           children: [
             for (var section in sections)
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8),// Add padding
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8), // Add padding
                 child: LegendTile(
                   color: section.color,
                   value: section.title.toString(),
                 ),
               ),
           ],
-
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
       ],
     );
   }
@@ -131,7 +137,7 @@ class LegendTile extends StatelessWidget {
   final Color color;
   final String value;
 
-  LegendTile({required this.color, required this.value});
+  const LegendTile({super.key, required this.color, required this.value});
 
   @override
   Widget build(BuildContext context) {
@@ -142,8 +148,10 @@ class LegendTile extends StatelessWidget {
           height: 20,
           color: color,
         ),
-        SizedBox(width: 8),
-        Text(value, style: TextStyle(fontSize: 16)), // Show value instead of title
+        const SizedBox(width: 8),
+        Text(value,
+            style:
+                const TextStyle(fontSize: 16)), // Show value instead of title
       ],
     );
   }
@@ -174,18 +182,20 @@ class ProfileTile extends StatelessWidget {
             color: Colors.grey.withOpacity(0.3),
             spreadRadius: 3,
             blurRadius: 5,
-            offset: Offset(0, 3),
+            offset: const Offset(0, 3),
           ),
         ],
       ),
-      padding: EdgeInsets.all(16), // Add padding
+      padding: const EdgeInsets.all(16), // Add padding
       child: Row(
         children: [
           Icon(icon, size: 36, color: Colors.blueGrey),
-          SizedBox(width: 16), // Add spacing between the icon and text
+          const SizedBox(width: 16), // Add spacing between the icon and text
           Text(
             title,
-            style: TextStyle(fontSize: 16, ),
+            style: const TextStyle(
+              fontSize: 16,
+            ),
           ),
         ],
       ),

@@ -8,6 +8,8 @@ import 'api.dart';
 import 'package:http/http.dart' as http;
 
 class ProblemMap extends StatefulWidget {
+  const ProblemMap({super.key});
+
   @override
   _ProblemMapState createState() => _ProblemMapState();
 }
@@ -55,7 +57,7 @@ class _ProblemMapState extends State<ProblemMap> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 500, // Set the desired height
       width: 700, // Set the desired width
       // child: GoogleMap(
@@ -71,7 +73,7 @@ class _ProblemMapState extends State<ProblemMap> {
       //   markers: allMarkers,
       // ),
       child: FlutterMap(
-        options: MapOptions(
+        options: const MapOptions(
             initialZoom: 13, initialCenter: LatLng(6.131015, 1.223898)),
         children: [
           // Layer that adds the map
@@ -127,9 +129,9 @@ void main() {
   runApp(MaterialApp(
     home: Scaffold(
       appBar: AppBar(
-        title: Text('Problem Map Example'),
+        title: const Text('Problem Map Example'),
       ),
-      body: ProblemMap(),
+      body: const ProblemMap(),
     ),
   ));
 }
