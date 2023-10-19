@@ -82,6 +82,7 @@ class _SelectUserTypePageState extends State<SelectUserTypePage> {
                         fontSize: 22,
                         color: Colors.white,
                       ),
+
                     ),
                   ),
                 ),
@@ -228,6 +229,7 @@ class ProbTypeTile extends StatelessWidget {
                     fontSize: 16,
                     color: textColor,
                   ),
+                  textAlign: TextAlign.center,
                 ),
               ],
             ),

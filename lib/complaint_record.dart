@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'complaint_confirm.dart';
+
 class TakeComplain extends StatefulWidget {
   final String probType;
   const TakeComplain({super.key, required this.probType});
@@ -252,7 +254,12 @@ class _TakeComplainState extends State<TakeComplain> {
                           ),
                           SizedBox(height: 5),
                           ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ComplaintConfirmation(),
+                              ),
+                            ),
                             style: ElevatedButton.styleFrom(
                               primary: Colors.blueGrey, // Button color
                               onPrimary: Colors.white, // Text color
