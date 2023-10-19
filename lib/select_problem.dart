@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'complaint_record.dart';
 
-class SelectUserTypePage extends StatefulWidget {
+class SelectComplaintTypePage extends StatefulWidget {
   @override
-  _SelectUserTypePageState createState() => _SelectUserTypePageState();
+  _SelectComplaintTypePageState createState() =>
+      _SelectComplaintTypePageState();
 }
 
-class _SelectUserTypePageState extends State<SelectUserTypePage> {
+class _SelectComplaintTypePageState extends State<SelectComplaintTypePage> {
   String selectedUserType = "";
 
   void onUserTypeSelected(String userType) async {
@@ -34,7 +35,7 @@ class _SelectUserTypePageState extends State<SelectUserTypePage> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title: Text(""),
+          title: const Text(""),
           foregroundColor: Colors.black,
           automaticallyImplyLeading: false,
           elevation: 0,
@@ -44,22 +45,22 @@ class _SelectUserTypePageState extends State<SelectUserTypePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(
+                const Padding(
                   padding: EdgeInsets.all(16), // Add space at the top
                   child: Text(
                     "Choose the category under which your complaint falls.",
                     style: TextStyle(fontSize: 27),
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Padding(
-                  padding: EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(16),
                   child: UserTypeGrid(
                     onUserTypeSelected: onUserTypeSelected,
                     selectedUserType: selectedUserType,
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Container(
                   width: 200,
                   height: 50,
@@ -76,13 +77,12 @@ class _SelectUserTypePageState extends State<SelectUserTypePage> {
                         borderRadius: BorderRadius.circular(30),
                       ),
                     ),
-                    child: Text(
+                    child: const Text(
                       "Next",
                       style: TextStyle(
                         fontSize: 22,
                         color: Colors.white,
                       ),
-
                     ),
                   ),
                 ),
@@ -97,80 +97,82 @@ class UserTypeGrid extends StatelessWidget {
   final Function(String) onUserTypeSelected;
   final String selectedUserType;
 
-  UserTypeGrid(
-      {required this.onUserTypeSelected, required this.selectedUserType});
+  const UserTypeGrid(
+      {super.key,
+      required this.onUserTypeSelected,
+      required this.selectedUserType});
 
   @override
   Widget build(BuildContext context) {
     return GridView.count(
       crossAxisCount: 3,
       shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       mainAxisSpacing: 10,
       crossAxisSpacing: 5,
       children: [
         ProbTypeTile(
-          key: ValueKey<String>("Electrical"),
+          key: const ValueKey<String>("Electrical"),
           icon: Icons.electrical_services_outlined,
           text: "Electrical",
           onUserTypeSelected: onUserTypeSelected,
           isSelected: selectedUserType == "Electrical",
           textColor: Colors.pink,
-          colorTile: Color.fromARGB(209, 255, 230, 238),
+          colorTile: const Color.fromARGB(209, 255, 230, 238),
         ),
         ProbTypeTile(
-          key: ValueKey<String>("Sanitation"),
+          key: const ValueKey<String>("Sanitation"),
           icon: Icons.sanitizer_sharp,
           text: "Sanitation",
           onUserTypeSelected: onUserTypeSelected,
           isSelected: selectedUserType == "Sanitation",
           textColor: const Color.fromARGB(255, 33, 82, 165),
-          colorTile: Color.fromARGB(210, 227, 243, 255),
+          colorTile: const Color.fromARGB(210, 227, 243, 255),
         ),
         ProbTypeTile(
-          key: ValueKey<String>("Security"),
+          key: const ValueKey<String>("Security"),
           icon: Icons.security,
           text: "Security",
           onUserTypeSelected: onUserTypeSelected,
           isSelected: selectedUserType == "Security",
-          textColor: Color.fromARGB(255, 20, 114, 56),
-          colorTile: Color.fromARGB(214, 224, 251, 233),
+          textColor: const Color.fromARGB(255, 20, 114, 56),
+          colorTile: const Color.fromARGB(214, 224, 251, 233),
         ),
         ProbTypeTile(
-          key: ValueKey<String>("Dead Animals"),
+          key: const ValueKey<String>("Dead Animals"),
           icon: Icons.pets,
           text: "Dead Animals",
           onUserTypeSelected: onUserTypeSelected,
           isSelected: selectedUserType == "Dead Animals",
           textColor: Colors.orange,
-          colorTile: Color.fromARGB(216, 254, 240, 218),
+          colorTile: const Color.fromARGB(216, 254, 240, 218),
         ),
         ProbTypeTile(
-          key: ValueKey<String>("Potholes"),
+          key: const ValueKey<String>("Potholes"),
           icon: Icons.add_road,
           text: "Potholes",
           onUserTypeSelected: onUserTypeSelected,
           isSelected: selectedUserType == "Potholes",
-          textColor: Color.fromARGB(255, 143, 119, 25),
-          colorTile: Color.fromARGB(221, 253, 246, 216),
+          textColor: const Color.fromARGB(255, 143, 119, 25),
+          colorTile: const Color.fromARGB(221, 253, 246, 216),
         ),
         ProbTypeTile(
-          key: ValueKey<String>("Parking"),
+          key: const ValueKey<String>("Parking"),
           icon: Icons.gps_fixed,
           text: "Parking",
           onUserTypeSelected: onUserTypeSelected,
           isSelected: selectedUserType == "Parking",
-          textColor: Color.fromARGB(255, 13, 108, 107),
-          colorTile: Color.fromARGB(219, 219, 254, 254),
+          textColor: const Color.fromARGB(255, 13, 108, 107),
+          colorTile: const Color.fromARGB(219, 219, 254, 254),
         ),
         ProbTypeTile(
-          key: ValueKey<String>("Others"),
+          key: const ValueKey<String>("Others"),
           icon: Icons.more_horiz,
           text: "Others",
           onUserTypeSelected: onUserTypeSelected,
           isSelected: selectedUserType == "Others",
           textColor: Colors.deepPurple,
-          colorTile: Color.fromARGB(217, 234, 223, 250),
+          colorTile: const Color.fromARGB(217, 234, 223, 250),
         ),
       ],
     );
@@ -204,14 +206,14 @@ class ProbTypeTile extends StatelessWidget {
         borderRadius: BorderRadius.circular(30),
         side: isSelected
             ? BorderSide(color: textColor, width: 2.0)
-            : BorderSide(color: Colors.white, width: 1.0),
+            : const BorderSide(color: Colors.white, width: 1.0),
       ),
       child: InkWell(
         onTap: () {
           onUserTypeSelected(text);
         },
         child: Padding(
-          padding: EdgeInsets.all(15),
+          padding: const EdgeInsets.all(15),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -222,7 +224,7 @@ class ProbTypeTile extends StatelessWidget {
                   size: 36,
                   color: textColor,
                 ),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 Text(
                   text,
                   style: TextStyle(

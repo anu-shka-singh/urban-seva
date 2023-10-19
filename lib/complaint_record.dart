@@ -37,20 +37,20 @@ class _TakeComplainState extends State<TakeComplain> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Raise Complaint'),
+        title: const Text('Raise Complaint'),
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
         elevation: 0,
       ),
       body: Padding(
-        padding: EdgeInsets.all(1.0),
+        padding: const EdgeInsets.all(1.0),
         child: Form(
           child: SingleChildScrollView(
             child: Container(
-              color: Color.fromARGB(255, 236, 235, 235),
+              color: const Color.fromARGB(255, 236, 235, 235),
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Card(
@@ -61,15 +61,15 @@ class _TakeComplainState extends State<TakeComplain> {
                         children: [
                           Text(
                             widget.probType,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           GestureDetector(
                             onTap: () => Navigator.pop(context),
-                            child: Text(
+                            child: const Text(
                               "CHANGE",
                               style: TextStyle(
                                   color: Color.fromARGB(255, 22, 61, 202),
@@ -87,15 +87,15 @@ class _TakeComplainState extends State<TakeComplain> {
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: [
-                          SizedBox(height: 10),
-                          Text(
+                          const SizedBox(height: 10),
+                          const Text(
                             "Tell us your problem?",
                             style: TextStyle(
                               fontSize: 20.0,
                             ),
                           ),
-                          SizedBox(height: 8),
-                          Text(
+                          const SizedBox(height: 8),
+                          const Text(
                             "You can select one or more options",
                             style: TextStyle(
                               fontSize: 16.0,
@@ -132,26 +132,26 @@ class _TakeComplainState extends State<TakeComplain> {
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: [
-                          SizedBox(height: 10),
-                          Text(
+                          const SizedBox(height: 10),
+                          const Text(
                             "Add Details",
                             style: TextStyle(
                               fontSize: 20.0,
                             ),
                           ),
-                          SizedBox(height: 8),
-                          Text(
+                          const SizedBox(height: 8),
+                          const Text(
                             "Details you think are important for us to know",
                             style: TextStyle(
                               fontSize: 16.0,
                               color: Colors.grey,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           TextField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               hintText:
                                   'Eg. There are a lot of power cuts in my area',
                               hintStyle: TextStyle(color: Colors.grey),
@@ -182,7 +182,7 @@ class _TakeComplainState extends State<TakeComplain> {
                               fontSize: 20.0,
                             ),
                           ),
-                          SizedBox(height: 8),
+                          const SizedBox(height: 8),
                           const Text(
                             "Photos help us understand the gravity of your problems and allocate the best resources for resolution",
                             style: TextStyle(
@@ -211,7 +211,7 @@ class _TakeComplainState extends State<TakeComplain> {
                                   ),
                                   borderRadius: BorderRadius.circular(5.0),
                                 ),
-                                child: Icon(
+                                child: const Icon(
                                   Icons.photo_library,
                                   size: 32.0,
                                   color: Colors.grey,
@@ -228,7 +228,7 @@ class _TakeComplainState extends State<TakeComplain> {
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: [
-                          SizedBox(height: 5),
+                          const SizedBox(height: 5),
                           Row(
                             children: [
                               Radio(
@@ -241,40 +241,41 @@ class _TakeComplainState extends State<TakeComplain> {
                                 },
                                 activeColor: Colors.blueGrey,
                               ),
-                              Text(
+                              const Text(
                                 "Is the complaint urgent?",
                                 style: TextStyle(
                                     color: Colors.black, fontSize: 16),
                               ),
                             ],
                           ),
-                          SizedBox(height: 5),
-                          Divider(
+                          const SizedBox(height: 5),
+                          const Divider(
                             color: Color.fromARGB(255, 114, 113, 113),
                           ),
-                          SizedBox(height: 5),
+                          const SizedBox(height: 5),
                           ElevatedButton(
                             onPressed: () => Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => ComplaintConfirmation(),
+                                builder: (context) =>
+                                    const ComplaintConfirmation(),
                               ),
                             ),
                             style: ElevatedButton.styleFrom(
                               primary: Colors.blueGrey, // Button color
                               onPrimary: Colors.white, // Text color
-                              fixedSize: Size(150, 50),
+                              fixedSize: const Size(150, 50),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(
                                     20.0), // Adjust the radius as needed
                               ),
                             ),
-                            child: Text(
+                            child: const Text(
                               "SUBMIT",
                               style: TextStyle(fontSize: 20),
                             ),
                           ),
-                          SizedBox(height: 8),
+                          const SizedBox(height: 8),
                         ],
                       ),
                     ),

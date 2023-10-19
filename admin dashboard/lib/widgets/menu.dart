@@ -31,14 +31,14 @@ class _MenuState extends State<Menu> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color(0xFF21222D),
+      color: const Color(0xFF21222D),
       height: MediaQuery.of(context).size.height,
       child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Text(
+              const Text(
                 "Urban Seva",
                 style: TextStyle(
                   fontSize: 40,
@@ -46,7 +46,7 @@ class _MenuState extends State<Menu> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               for (var i = 0; i < menu.length; i++)
@@ -65,7 +65,7 @@ class _MenuState extends State<Menu> {
                     onTap: () {
                       if (i == 2) {
                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => AddIssue(),
+                          builder: (context) => const AddIssue(),
                         ));
                       } else {
                         setState(() {
@@ -89,8 +89,9 @@ class _MenuState extends State<Menu> {
                           style: TextStyle(
                             fontSize: 16,
                             color: selected == i ? Colors.black : Colors.grey,
-                            fontWeight:
-                            selected == i ? FontWeight.w600 : FontWeight.normal,
+                            fontWeight: selected == i
+                                ? FontWeight.w600
+                                : FontWeight.normal,
                           ),
                         )
                       ],

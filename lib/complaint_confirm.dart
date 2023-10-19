@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(
-    MaterialApp(
+    const MaterialApp(
       home: Directionality(
         textDirection: TextDirection.ltr, // Set the text direction to LTR
         child: ComplaintConfirmation(),
@@ -23,13 +23,13 @@ class _ComplaintConfirmationState extends State<ComplaintConfirmation> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(118, 255, 255, 255),
+        backgroundColor: const Color.fromARGB(118, 255, 255, 255),
         elevation: 0,
         // title: Text('Confirmation'),
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -41,19 +41,20 @@ class _ComplaintConfirmationState extends State<ComplaintConfirmation> {
                     fontWeight: FontWeight.bold,
                     color: Color.fromARGB(255, 13, 63, 134)),
               ),
-              SizedBox(height: 50.0), // Add a SizedBox for spacing at the top
+              const SizedBox(
+                  height: 50.0), // Add a SizedBox for spacing at the top
               Image.asset(
                 'images/confetti.png', // Replace with your image path
                 height: 300,
                 width: 300,
               ),
-              SizedBox(height: 40.0),
+              const SizedBox(height: 40.0),
               const Text(
                 "Complaint Successfully Raised",
                 style: TextStyle(
                     color: Color.fromARGB(255, 13, 63, 134), fontSize: 20),
               ),
-              SizedBox(height: 30.0),
+              const SizedBox(height: 30.0),
               const Text(
                 "We want you to sit back and relax. Resolving your complaint will be our top priority.",
                 style: TextStyle(
@@ -62,7 +63,7 @@ class _ComplaintConfirmationState extends State<ComplaintConfirmation> {
                 ),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 50.0),
+              const SizedBox(height: 50.0),
               Card(
                 elevation: 0,
                 color: Colors.white,
@@ -75,7 +76,7 @@ class _ComplaintConfirmationState extends State<ComplaintConfirmation> {
                 ),
                 child: InkWell(
                   onTap: () {},
-                  child: Padding(
+                  child: const Padding(
                     padding: EdgeInsets.all(16),
                     child: Column(
                       children: [

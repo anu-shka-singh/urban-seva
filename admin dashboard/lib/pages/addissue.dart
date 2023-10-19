@@ -2,13 +2,20 @@ import 'package:flutter/material.dart';
 import '../widgets/menu.dart';
 
 class AddIssue extends StatefulWidget {
+  const AddIssue({super.key});
+
   @override
   _AddIssueState createState() => _AddIssueState();
 }
 
 class _AddIssueState extends State<AddIssue> {
   String selectedCategory = 'Roads Transportation'; // Default category
-  List<String> categories = ['Roads Transportation', 'Water Sewer', 'Electricity Power', 'Sanitation'];
+  List<String> categories = [
+    'Roads Transportation',
+    'Water Sewer',
+    'Electricity Power',
+    'Sanitation'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +23,10 @@ class _AddIssueState extends State<AddIssue> {
       body: Row(
         children: [
           // Menu on the left
-          Container(
+          SizedBox(
             width: 270, // Set the width of the menu
-            child: Menu(scaffoldKey: GlobalKey<ScaffoldState>()), // Use the Menu widget
+            child: Menu(
+                scaffoldKey: GlobalKey<ScaffoldState>()), // Use the Menu widget
           ),
           // AddIssue content on the right
           Expanded(
@@ -26,19 +34,19 @@ class _AddIssueState extends State<AddIssue> {
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
-                  SizedBox(height: 50),
-                  Text(
+                  const SizedBox(height: 50),
+                  const Text(
                     'Add an Issue',
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 40), // Add spacing below the heading
+                  const SizedBox(height: 40), // Add spacing below the heading
 
                   // Category selection dropdown inside a ListTile
                   ListTile(
-                    title: Text('Category of Issue'),
+                    title: const Text('Category of Issue'),
                     subtitle: DropdownButton<String>(
                       value: selectedCategory,
                       onChanged: (String? newValue) {
@@ -56,32 +64,33 @@ class _AddIssueState extends State<AddIssue> {
                   ),
 
                   // Rest of your AddIssue content
-                  TextField(
-                    decoration: InputDecoration(labelText: 'Enter Issue Details'),
+                  const TextField(
+                    decoration:
+                        InputDecoration(labelText: 'Enter Issue Details'),
                   ),
-                  SizedBox(height: 10),
-                  TextField(
+                  const SizedBox(height: 10),
+                  const TextField(
                     decoration: InputDecoration(labelText: 'Enter Reason'),
                   ),
-                  SizedBox(height: 10),
-                  TextField(
+                  const SizedBox(height: 10),
+                  const TextField(
                     decoration: InputDecoration(labelText: 'Enter Location'),
                   ),
-                  SizedBox(height: 10),
-                  TextField(
+                  const SizedBox(height: 10),
+                  const TextField(
                     decoration: InputDecoration(labelText: 'Enter Pin Code'),
                   ),
-                  SizedBox(height:40),
+                  const SizedBox(height: 40),
                   ElevatedButton(
                     onPressed: () {
                       // Handle issue submission here
                     },
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Color(0xFF21222D)), // Change the color to your desired color
+                      backgroundColor: MaterialStateProperty.all(const Color(
+                          0xFF21222D)), // Change the color to your desired color
                     ),
-                    child: Text('Submit', style: TextStyle(fontSize: 18)),
+                    child: const Text('Submit', style: TextStyle(fontSize: 18)),
                   )
-
                 ],
               ),
             ),
