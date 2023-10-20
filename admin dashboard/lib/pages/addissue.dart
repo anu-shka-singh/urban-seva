@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+import 'package:intl/intl.dart';
 import '../widgets/menu.dart';
 
 class AddIssue extends StatefulWidget {
@@ -17,6 +19,10 @@ class _AddIssueState extends State<AddIssue> {
     'Sanitation'
   ];
 
+  DateTime? selectedDate; // To store the selected date
+  DateTime? startTime; // To store the selected start time
+  DateTime? endTime; // To store the selected end time
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,17 +32,18 @@ class _AddIssueState extends State<AddIssue> {
           SizedBox(
             width: 270, // Set the width of the menu
             child: Menu(
-                scaffoldKey: GlobalKey<ScaffoldState>()), // Use the Menu widget
+              scaffoldKey: GlobalKey<ScaffoldState>(),
+            ),
           ),
           // AddIssue content on the right
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(50.0),
               child: Column(
                 children: [
-                  const SizedBox(height: 50),
+                  const SizedBox(height: 10),
                   const Text(
-                    'Add an Issue',
+                    'Issue an Alert !',
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
@@ -46,7 +53,7 @@ class _AddIssueState extends State<AddIssue> {
 
                   // Category selection dropdown inside a ListTile
                   ListTile(
-                    title: const Text('Category of Issue'),
+                    title: const Text('Alert Type'),
                     subtitle: DropdownButton<String>(
                       value: selectedCategory,
                       onChanged: (String? newValue) {
@@ -63,10 +70,37 @@ class _AddIssueState extends State<AddIssue> {
                     ),
                   ),
 
+                  // Date selection using the DateTimeField
+                  DateTimeField(
+                    format: DateFormat("yyyy-MM-dd"),
+                    decoration: InputDecoration(
+                      labelText: 'Select Date',
+                    ),
+                    onChanged: (dt) {
+                      setState(() {
+                        selectedDate = dt;
+                      });
+                    },
+                    onShowPicker: (context, currentValue) {
+                      return showDatePicker(
+                        context: context,
+                        firstDate: DateTime(2000),
+                        initialDate: currentValue ?? DateTime.now(),
+                        lastDate: DateTime(2101),
+                      );
+                    },
+                  ),
+
+
+                  // Start Time selection using the DateTimeField
+                //DateTime? selectedDate = DateTime.now();
+                //To store the selected date
+            //DateTime? startTime; // To store the selected start time
+
+
                   // Rest of your AddIssue content
                   const TextField(
-                    decoration:
-                        InputDecoration(labelText: 'Enter Issue Details'),
+                    decoration: InputDecoration(labelText: 'Enter Details'),
                   ),
                   const SizedBox(height: 10),
                   const TextField(
@@ -78,12 +112,12 @@ class _AddIssueState extends State<AddIssue> {
                   ),
                   const SizedBox(height: 10),
                   const TextField(
-                    decoration: InputDecoration(labelText: 'Enter Pin Code'),
+                    decoration: InputDecoration(labelText: 'Enter Pin Code of the Area'),
                   ),
                   const SizedBox(height: 40),
                   ElevatedButton(
                     onPressed: () {
-                      // Handle issue submission here
+                      // Handle issue submission here, and you can use 'selectedDate', 'startTime', and 'endTime' for date and time values.
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(const Color(

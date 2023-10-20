@@ -76,25 +76,25 @@ class PieChartWidget extends StatelessWidget {
     List<PieChartSectionData> sections = [
       PieChartSectionData(
         title: 'Roads and Transportation',
-        value: 28,
-        color: Colors.blue,
+        value: 15,
+        color: Colors.orange,
         showTitle: false,
       ),
       PieChartSectionData(
         title: 'Water and Sewer',
-        value: 23,
-        color: Colors.green,
+        value: 30,
+        color: Colors.blue,
         showTitle: false,
       ),
       PieChartSectionData(
         title: 'Electricity and Power',
         value: 10,
-        color: Colors.orange,
+        color: Colors.green,
         showTitle: false,
       ),
       PieChartSectionData(
         title: 'Sanitation',
-        value: 22,
+        value: 25,
         color: Colors.red,
         showTitle: false,
       ),

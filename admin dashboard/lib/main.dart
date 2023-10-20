@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dashboard/const.dart';
 import 'package:flutter_dashboard/dashboard.dart';
+import 'package:flutter_dashboard/pages/login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'IBMPlexSans',
         brightness: Brightness.light, // Change to light mode
       ),
-      home: DashBoard(),
+      home: LoginPage(),
     );
   }
 }
