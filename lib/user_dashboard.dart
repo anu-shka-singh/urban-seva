@@ -1,10 +1,9 @@
 import 'package:complaint_app/community_page.dart';
+import 'package:complaint_app/announcements.dart';
 import 'package:complaint_app/complaint_confirm.dart';
 import 'package:complaint_app/map_page.dart';
 import 'package:complaint_app/select_problem.dart';
 import 'package:flutter/material.dart';
-
-import 'announcements.dart';
 import 'chatbot_screen.dart';
 
 class Dashboard extends StatefulWidget {
@@ -33,9 +32,9 @@ class DashboardState extends State<Dashboard> {
   ];
 
   List<String> sub = [
-    'Issue 1',
-    'Issue 2',
-    'Issue 3',
+    'A Block, Street 14, Janakpuri West',
+    'Maharaja Roaj, Uttam Nagar',
+    'K Block, Street 10, Jankapuri East',
   ];
 
   void _onTaskCompleted(int index) {
@@ -56,12 +55,12 @@ class DashboardState extends State<Dashboard> {
     } else if (index == 1) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => Communities()),
+        MaterialPageRoute(builder: (context) => const Communities()),
       );
     } else if (index == 2) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => ChatBotScreen()),
+        MaterialPageRoute(builder: (context) => const ChatBotScreen()),
       );
     }
   }
@@ -70,6 +69,7 @@ class DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.black,
         elevation: 0,
         automaticallyImplyLeading: false,
         actions: [
@@ -77,10 +77,11 @@ class DashboardState extends State<Dashboard> {
             icon: const Icon(Icons.notifications),
             onPressed: () {
               final data = widget.user;
-              print(data);
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Announcements()),
+                MaterialPageRoute(
+                  builder: (context) => const Announcements(),
+                ),
               );
             },
           ),
@@ -99,233 +100,226 @@ class DashboardState extends State<Dashboard> {
         ],
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                color: Colors.blue,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(70),
+          child: Column(children: [
+        Container(
+          width: double.infinity,
+          decoration: const BoxDecoration(
+            color: Colors.black,
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(70),
+            ),
+          ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20.0, 0.0, 12.0, 20.0),
+                child: Image.asset(
+                  'images/female.png',
+                  height: 60,
+                  width: 60,
                 ),
               ),
-              child: Row(
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(20.0, 0.0, 12.0, 20.0),
-                    child: Image.asset(
-                      'images/female.png',
-                      height: 60,
-                      width: 60,
+                  Text(
+                    widget.user['name'],
+                    style: const TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
                     ),
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        widget.user['name'],
-                        style: const TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                      Text(
-                        widget.user['address'],
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                    ],
+                  Text(
+                    widget.user['address'],
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 30,
                   ),
                 ],
               ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Card(
-              color: const Color.fromARGB(255, 202, 244, 240),
-              margin: const EdgeInsets.all(14.0),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+            ],
+          ),
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+        Card(
+          color: const Color.fromARGB(255, 202, 244, 240),
+          margin: const EdgeInsets.all(14.0),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          "Issues in your locality",
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
-                        IconButton(
-                          icon: const Icon(Icons.arrow_forward),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const MapScreen()),
-                            );
-                          },
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
                     const Text(
-                      "See various issues in your locality",
+                      "Issues in your locality",
                       style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
-                    const SizedBox(height: 20),
+                    IconButton(
+                      icon: const Icon(Icons.arrow_forward),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const MapScreen()),
+                        );
+                      },
+                    ),
                   ],
                 ),
-              ),
+                const SizedBox(
+                  height: 10,
+                ),
+                const Text(
+                  "See various issues in your locality",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 20),
+              ],
             ),
-            Container(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "My Issues",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                "My Issues",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 10),
+              ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: issue.length,
+                itemBuilder: (context, index) {
+                  return Card(
+                    color: taskColors[index],
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
                     ),
-                  ),
-                  const SizedBox(height: 10),
-                  ListView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: issue.length,
-                    itemBuilder: (context, index) {
-                      return Card(
-                        color: taskColors[index],
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        elevation: 2,
-                        margin: const EdgeInsets.all(12.0),
-                        child: Column(
-                          children: [
-                            ListTile(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              contentPadding: const EdgeInsets.all(16.0),
-                              title: Text(
-                                issue[index],
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                ),
-                              ),
-                              subtitle: Text(
-                                sub[index],
-                                style: const TextStyle(
-                                  color: Color.fromARGB(255, 3, 31, 54),
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 16,
-                                ),
-                              ),
-                              tileColor: taskColors[index],
+                    elevation: 2,
+                    margin: const EdgeInsets.all(12.0),
+                    child: Column(
+                      children: [
+                        ListTile(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          contentPadding: const EdgeInsets.all(16.0),
+                          title: Text(
+                            issue[index],
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
                             ),
-                            Row(
-                              children: [
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                Column(
-                                  children: completedTasks
-                                      .asMap()
-                                      .entries
-                                      .map((entry) {
-                                    final taskIndex = entry.key;
-                                    final completed = entry.value;
-                                    return Column(
-                                      children: [
-                                        Container(
-                                          width: 16,
-                                          height: 8,
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: completed
-                                                ? Colors.green
-                                                : Colors.red,
-                                          ),
-                                        ),
-                                        if (taskIndex <
-                                            completedTasks.length - 1)
-                                          Container(
-                                            width: 3,
-                                            height: 29,
-                                            color: completed
-                                                ? Colors.green
-                                                : Colors.grey,
-                                          ),
-                                      ],
-                                    );
-                                  }).toList(),
-                                ),
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                const Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                          ),
+                          subtitle: Text(
+                            sub[index],
+                            style: const TextStyle(
+                              color: Color.fromARGB(255, 3, 31, 54),
+                              fontWeight: FontWeight.w400,
+                              fontSize: 16,
+                            ),
+                          ),
+                          tileColor: taskColors[index],
+                        ),
+                        Row(
+                          children: [
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Column(
+                              children:
+                                  completedTasks.asMap().entries.map((entry) {
+                                final taskIndex = entry.key;
+                                final completed = entry.value;
+                                return Column(
                                   children: [
-                                    Text("Issue Registered",
-                                        style: TextStyle(fontSize: 14)),
-                                    SizedBox(
-                                      height: 20,
+                                    Container(
+                                      width: 16,
+                                      height: 8,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: completed
+                                            ? Colors.green
+                                            : Colors.red,
+                                      ),
                                     ),
-                                    Text("Forwarded to authorities",
-                                        style: TextStyle(fontSize: 14)),
-                                    SizedBox(
-                                      height: 20,
-                                    ),
-                                    Text("Action Initiated",
-                                        style: TextStyle(fontSize: 14)),
-                                    SizedBox(
-                                      height: 20,
-                                    ),
-                                    Text("Action in Progress",
-                                        style: TextStyle(fontSize: 14)),
-                                    SizedBox(
-                                      height: 20,
-                                    ),
-                                    Text("Resolved",
-                                        style: TextStyle(fontSize: 14)),
+                                    if (taskIndex < completedTasks.length - 1)
+                                      Container(
+                                        width: 3,
+                                        height: 29,
+                                        color: completed
+                                            ? Colors.green
+                                            : Colors.grey,
+                                      ),
                                   ],
-                                ),
-                              ],
+                                );
+                              }).toList(),
                             ),
                             const SizedBox(
-                              height: 10,
-                            )
+                              width: 10,
+                            ),
+                            const Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("Issue Registered",
+                                    style: TextStyle(fontSize: 14)),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Text("Forwarded to authorities",
+                                    style: TextStyle(fontSize: 14)),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Text("Action Initiated",
+                                    style: TextStyle(fontSize: 14)),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Text("Action in Progress",
+                                    style: TextStyle(fontSize: 14)),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Text("Resolved",
+                                    style: TextStyle(fontSize: 14)),
+                              ],
+                            ),
                           ],
                         ),
-                      );
-                    },
-                  ),
-                ],
+                        const SizedBox(
+                          height: 10,
+                        )
+                      ],
+                    ),
+                  );
+                },
               ),
-            )
-          ],
-        ),
-      ),
+            ],
+          ),
+        )
+      ])),
       bottomNavigationBar: BottomNavigationBar(
         onTap: _onItemTapped,
         items: const [
@@ -361,7 +355,7 @@ class DashboardState extends State<Dashboard> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => SelectComplaintTypePage()),
+                  builder: (context) => const SelectComplaintTypePage()),
             );
           },
           backgroundColor: Colors.green,

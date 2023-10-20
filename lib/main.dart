@@ -10,7 +10,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      theme: ThemeData(primaryColor: Colors.black),
+      title: 'Urban Seva',
       home: Dashboard(
         user: const {'name': 'Diya', 'address': 'Laxmi Nagar, Delhi'},
       ),

@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_map/flutter_map.dart';
-// import 'package:latlong2/latlong.dart';
-// import 'api.dart';
-// import 'package:http/http.dart' as http;
 
 void main() {
   runApp(
-    MaterialApp(
+    const MaterialApp(
       home: Announcements(),
     ),
   );
@@ -23,64 +19,38 @@ class _AnnouncementsState extends State<Announcements> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+      ),
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        color: Color.fromARGB(238, 238, 238, 238),
+        color: const Color.fromARGB(238, 238, 238, 238),
         child: SingleChildScrollView(
           child: Column(
             children: [
               Container(
                 width: double.infinity,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.black,
                   borderRadius: BorderRadius.only(
                     bottomRight: Radius.elliptical(45, 0),
                     bottomLeft: Radius.circular(45),
                   ),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
+                child: const Padding(
+                  padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 20.0),
                   child: Column(
                     //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SizedBox(
-                        height: 45,
-                      ),
-                      Row(
-                        children: [
-                          Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              side: const BorderSide(
-                                color: Color.fromARGB(255, 13, 63, 134),
-                                width: 2.0,
-                              ),
-                            ),
-                            child: InkWell(
-                              onTap: () => Navigator.pop(context),
-                              child: Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Icon(
-                                  Icons.arrow_back_ios_new,
-                                  size: 30,
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "Announcements",
-                            style: TextStyle(
-                                fontSize: 35,
-                                //fontWeight: FontWeight.bold,
-                                //fontStyle: FontStyle.italic,
-                                color: Colors.white),
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
+                      Text(
+                        "Announcements",
+                        style: TextStyle(
+                            fontSize: 35,
+                            //fontWeight: FontWeight.bold,
+                            //fontStyle: FontStyle.italic,
+                            color: Colors.white),
+                        textAlign: TextAlign.center,
                       ),
                       SizedBox(
                         height: 15,
@@ -127,6 +97,7 @@ class CustomCard extends StatelessWidget {
   final String msg;
 
   CustomCard({
+    super.key,
     required this.dept,
     required this.dateTime,
     required this.msg,
@@ -134,7 +105,7 @@ class CustomCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.all(8.0),
+      margin: const EdgeInsets.all(8.0),
       elevation: 6,
       child: Column(
         children: [
@@ -143,12 +114,12 @@ class CustomCard extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: Row(
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.warning_amber_rounded,
                     size: 55,
                     color: Color.fromARGB(255, 226, 41, 78),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 5,
                   ),
                   Column(
@@ -156,14 +127,14 @@ class CustomCard extends StatelessWidget {
                     children: [
                       Text(
                         dept,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 25,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       Text(
                         dateTime,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 17,
                           color: Colors.grey,
                         ),
@@ -178,7 +149,7 @@ class CustomCard extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: Text(
               msg,
-              style: TextStyle(fontSize: 18.0),
+              style: const TextStyle(fontSize: 18.0),
             ),
           ),
         ],

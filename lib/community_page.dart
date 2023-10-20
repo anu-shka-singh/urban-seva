@@ -5,13 +5,15 @@ import 'user_dashboard.dart';
 
 void main() {
   runApp(
-    MaterialApp(
+    const MaterialApp(
       home: Communities(),
     ),
   );
 }
 
 class Communities extends StatefulWidget {
+  const Communities({super.key});
+
   @override
   State<Communities> createState() => CommunitiesState();
 }
@@ -21,14 +23,14 @@ class CommunitiesState extends State<Communities> {
   int selectedDislike = 0;
   String comment = "";
 
-  void onUpvote() {
+  void onDownvote() {
     setState(() {
       selectedLike = 1;
       selectedDislike = 0; // Reset the dislike state
     });
   }
 
-  void onDownvote() {
+  void onUpvote() {
     setState(() {
       selectedDislike = 1; // Reset the like state
       selectedLike = 0;
@@ -53,12 +55,12 @@ class CommunitiesState extends State<Communities> {
     } else if (index == 1) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => Communities()),
+        MaterialPageRoute(builder: (context) => const Communities()),
       );
     } else if (index == 2) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => ChatBotScreen()),
+        MaterialPageRoute(builder: (context) => const ChatBotScreen()),
       );
     }
   }
@@ -66,16 +68,19 @@ class CommunitiesState extends State<Communities> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+      ),
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        color: Color.fromARGB(238, 238, 238, 238),
+        color: const Color.fromARGB(238, 238, 238, 238),
         child: SingleChildScrollView(
           child: Column(
             children: [
               Container(
                 width: double.infinity,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.black,
                   borderRadius: BorderRadius.only(
                     bottomRight: Radius.elliptical(45, 0),
@@ -83,14 +88,11 @@ class CommunitiesState extends State<Communities> {
                   ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 20.0),
                   child: Column(
                     //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SizedBox(
-                        height: 40,
-                      ),
-                      Text(
+                      const Text(
                         "Community",
                         style: TextStyle(
                             fontSize: 40,
@@ -99,7 +101,7 @@ class CommunitiesState extends State<Communities> {
                             color: Colors.white),
                         textAlign: TextAlign.center,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Card(
@@ -118,7 +120,7 @@ class CommunitiesState extends State<Communities> {
                               border: InputBorder.none,
                               suffixIcon: IconButton(
                                 onPressed: () {},
-                                icon: Icon(
+                                icon: const Icon(
                                   Icons.search,
                                   size: 30,
                                 ),
@@ -204,7 +206,8 @@ class MyPostUI extends StatelessWidget {
   final Function(String) onComment;
   //TextEditingController _textEditingController = TextEditingController();
 
-  MyPostUI({
+  const MyPostUI({
+    super.key,
     required this.name,
     required this.postID,
     required this.content,
@@ -223,7 +226,7 @@ class MyPostUI extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
-      margin: EdgeInsets.all(10.0),
+      margin: const EdgeInsets.all(10.0),
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
@@ -231,93 +234,87 @@ class MyPostUI extends StatelessWidget {
           children: [
             Row(
               children: [
-                CircleAvatar(
+                const CircleAvatar(
                   radius: 30,
                   backgroundImage: AssetImage(
                       'images/pfp.jpeg'), // Replace with your image path
                 ),
-                SizedBox(width: 15),
-                Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        name,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 25,
-                        ),
+                const SizedBox(width: 15),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      name,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25,
                       ),
-                      const Text(
-                        "12th Oct at 9:40PM",
-                        style: TextStyle(fontSize: 16, color: Colors.grey),
-                      ),
-                    ],
-                  ),
+                    ),
+                    const Text(
+                      "12th Oct at 9:40PM",
+                      style: TextStyle(fontSize: 16, color: Colors.grey),
+                    ),
+                  ],
                 ),
-                Spacer(),
+                const Spacer(),
                 Text(
                   postID,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
                       color: Colors.grey),
                 ),
               ],
             ),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
             Text(
               content,
-              style: TextStyle(fontSize: 18),
+              style: const TextStyle(fontSize: 18),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Row(
               children: [
-                CircleAvatar(
+                const CircleAvatar(
                   radius: 15,
                   backgroundImage:
                       AssetImage('images/user1.jpeg'), // Liked user 1 image
                 ),
-                CircleAvatar(
+                const CircleAvatar(
                   radius: 15,
                   backgroundImage:
                       AssetImage('images/user2.jpeg'), // Liked user 2 image
                 ),
-                CircleAvatar(
+                const CircleAvatar(
                   radius: 15,
                   backgroundImage:
                       AssetImage('images/user3.jpeg'), // Liked user 3 image
                 ),
-                SizedBox(width: 5),
+                const SizedBox(width: 5),
                 Text(
                   "+${likes - 3} likes",
-                  style: TextStyle(color: Colors.grey, fontSize: 14),
+                  style: const TextStyle(color: Colors.grey, fontSize: 14),
                 ),
-                Spacer(),
+                const Spacer(),
                 IconButton(
                   icon: Icon(
                     Icons.thumb_up_outlined,
-                    color: selectedLike == 0
-                        ? Colors.black
-                        : Color.fromARGB(255, 62, 136, 197),
+                    color: selectedLike == 1 ? Colors.green : Colors.black,
                   ),
                   onPressed: onUpvote,
                 ),
                 IconButton(
                   icon: Icon(
                     Icons.thumb_down_outlined,
-                    color: selectedDislike == 0
-                        ? Colors.black
-                        : Color.fromARGB(255, 62, 136, 197),
+                    color: selectedDislike == 1 ? Colors.red : Colors.black,
                   ),
                   onPressed: onDownvote,
                 ),
               ],
             ),
-            Divider(
+            const Divider(
               color: Color.fromARGB(255, 114, 113, 113),
             ),
-            SizedBox(height: 5),
+            const SizedBox(height: 5),
             Row(
               children: [
                 Expanded(
@@ -325,13 +322,13 @@ class MyPostUI extends StatelessWidget {
                     //controller: _textEditingController,
                     decoration: InputDecoration(
                       hintText: 'Add your views here...',
-                      hintStyle: TextStyle(color: Colors.grey),
+                      hintStyle: const TextStyle(color: Colors.grey),
                       border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.blueGrey),
+                          borderSide: const BorderSide(color: Colors.blueGrey),
                           borderRadius: BorderRadius.circular(10),
                           gapPadding: 2),
                     ),
-                    style: TextStyle(color: Colors.black),
+                    style: const TextStyle(color: Colors.black),
                     onChanged: (value) {
                       onComment(value);
                     },
@@ -339,7 +336,7 @@ class MyPostUI extends StatelessWidget {
                   ),
                 ),
                 IconButton(
-                  icon: Icon(Icons.send_rounded),
+                  icon: const Icon(Icons.send_rounded),
                   onPressed: () {
                     //_textEditingController.clear();
                     onComment("");

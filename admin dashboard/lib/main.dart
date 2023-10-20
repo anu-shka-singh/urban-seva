@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dashboard/const.dart';
-import 'package:flutter_dashboard/dashboard.dart';
 import 'package:flutter_dashboard/pages/login.dart';
 
 void main() {
@@ -32,7 +31,8 @@ class MyApp extends StatelessWidget {
             900: const Color(primaryColorCode).withOpacity(1.0),
           },
         ),
-        scaffoldBackgroundColor: Colors.grey.shade100, // Change background color
+        scaffoldBackgroundColor:
+            Colors.grey.shade100, // Change background color
         fontFamily: 'IBMPlexSans',
         brightness: Brightness.light, // Change to light mode
       ),

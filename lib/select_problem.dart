@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'complaint_record.dart';
 
 class SelectComplaintTypePage extends StatefulWidget {
+  const SelectComplaintTypePage({super.key});
+
   @override
   _SelectComplaintTypePageState createState() =>
       _SelectComplaintTypePageState();
@@ -37,7 +39,6 @@ class _SelectComplaintTypePageState extends State<SelectComplaintTypePage> {
           backgroundColor: Colors.white,
           title: const Text(""),
           foregroundColor: Colors.black,
-          automaticallyImplyLeading: false,
           elevation: 0,
         ),
         body: Center(

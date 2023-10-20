@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dashboard/dashboard.dart';
 
 class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFF21222D),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Container(
             width: 500, // Adjust the width as needed
-            padding: EdgeInsets.symmetric(horizontal: 40.0), // Add horizontal padding
+            padding: const EdgeInsets.symmetric(
+                horizontal: 40.0), // Add horizontal padding
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10.0),
@@ -19,7 +23,7 @@ class LoginPage extends StatelessWidget {
                   color: Colors.grey.withOpacity(0.5),
                   spreadRadius: 5,
                   blurRadius: 7,
-                  offset: Offset(0, 3),
+                  offset: const Offset(0, 3),
                 ),
               ],
             ),
@@ -32,23 +36,25 @@ class LoginPage extends StatelessWidget {
                   width: 350, // Adjust the width as needed
                   height: 100, // Adjust the height as needed
                 ),
-                SizedBox(height: 50,),
+                const SizedBox(
+                  height: 50,
+                ),
                 // Username field
-                TextField(
+                const TextField(
                   decoration: InputDecoration(
                     labelText: 'Username',
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
 
                 // Password field
-                TextField(
+                const TextField(
                   decoration: InputDecoration(
                     labelText: 'Password',
                   ),
                   obscureText: true,
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
 
                 // Login button
                 ElevatedButton(
@@ -60,15 +66,18 @@ class LoginPage extends StatelessWidget {
                     );
                   },
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Color(0xFF21222D)), // Change the button color
-                    minimumSize: MaterialStateProperty.all(Size(150, 50)), // Change the button size
+                    backgroundColor: MaterialStateProperty.all(
+                        const Color(0xFF21222D)), // Change the button color
+                    minimumSize: MaterialStateProperty.all(
+                        const Size(150, 50)), // Change the button size
                   ),
-                  child: Text(
+                  child: const Text(
                     'Login',
-                    style: TextStyle(fontSize: 18, color: Colors.white), // Change the text style
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white), // Change the text style
                   ),
                 )
-
               ],
             ),
           ),

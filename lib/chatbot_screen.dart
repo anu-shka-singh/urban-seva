@@ -7,7 +7,9 @@ import 'community_page.dart';
 import 'user_dashboard.dart';
 
 void main() {
-  runApp(const ChatBotScreen());
+  runApp(const MaterialApp(
+    home: ChatBotScreen(),
+  ));
 }
 
 class ChatBotScreen extends StatefulWidget {
@@ -26,7 +28,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
   void initState() {
     super.initState();
     _messages.add(Message(
-        text: "Hi, I am Legal Eagle. How may I assist you?", isMe: false));
+        text: "Hi, I am the Urban Guide. How may I assist you?", isMe: false));
   }
 
   void onSendMessage() async {
@@ -80,18 +82,17 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
             Container(
               decoration: BoxDecoration(
                 color: message.isMe
-                    ? Color.fromARGB(255, 225, 225, 225)
-                    : Colors.black, // Change colors as desired
+                    ? const Color.fromARGB(255, 40, 57, 86)
+                    : const Color.fromARGB(
+                        255, 6, 29, 68), // Change colors as desired
                 borderRadius: BorderRadius.circular(8),
               ),
               padding: const EdgeInsets.all(10),
               child: Text(
                 message.text,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18, // Adjust the font size as desired
-                  color: message.isMe
-                      ? Colors.black
-                      : Colors.white, // Text color for the message
+                  color: Colors.white, // Text color for the message
                 ),
               ),
             ),
@@ -113,12 +114,12 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
     } else if (index == 1) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => Communities()),
+        MaterialPageRoute(builder: (context) => const Communities()),
       );
     } else if (index == 2) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => ChatBotScreen()),
+        MaterialPageRoute(builder: (context) => const ChatBotScreen()),
       );
     }
   }

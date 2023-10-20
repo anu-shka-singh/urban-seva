@@ -1,38 +1,43 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: MyPostUI(),
     );
   }
 }
 
 class MyPostUI extends StatelessWidget {
+  const MyPostUI({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Post Example'),
+        title: const Text('Post Example'),
       ),
       body: Center(
         child: Card(
-          margin: EdgeInsets.all(16.0),
+          margin: const EdgeInsets.all(16.0),
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Row(
+                const Row(
                   children: [
                     CircleAvatar(
                       radius: 25,
-                      backgroundImage: AssetImage('images/pfp.jpeg'), // Replace with your image path
+                      backgroundImage: AssetImage(
+                          'images/pfp.jpeg'), // Replace with your image path
                     ),
                     SizedBox(width: 10),
                     Column(
@@ -47,37 +52,40 @@ class MyPostUI extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 10),
-                Text(
+                const SizedBox(height: 10),
+                const Text(
                   'This is the post content. It can be a long text that wraps to the next line if it is too long.',
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Row(
                   children: [
-                    CircleAvatar(
+                    const CircleAvatar(
                       radius: 15,
-                      backgroundImage: AssetImage('images/user1.jpeg'), // Liked user 1 image
+                      backgroundImage:
+                          AssetImage('images/user1.jpeg'), // Liked user 1 image
                     ),
-                    CircleAvatar(
+                    const CircleAvatar(
                       radius: 15,
-                      backgroundImage: AssetImage('images/user2.jpeg'), // Liked user 2 image
+                      backgroundImage:
+                          AssetImage('images/user2.jpeg'), // Liked user 2 image
                     ),
-                    CircleAvatar(
+                    const CircleAvatar(
                       radius: 15,
-                      backgroundImage: AssetImage('images/user3.jpeg'), // Liked user 3 image
+                      backgroundImage:
+                          AssetImage('images/user3.jpeg'), // Liked user 3 image
                     ),
-                    SizedBox(width: 5),
-                    Text('15 likes'),
-                    SizedBox(width: 20),
+                    const SizedBox(width: 5),
+                    const Text('15 likes'),
+                    const SizedBox(width: 20),
                     IconButton(
-                      icon: Icon(Icons.thumb_up),
+                      icon: const Icon(Icons.thumb_up),
                       color: Colors.blue, // Change color when upvoted
                       onPressed: () {
                         // Handle upvote action
                       },
                     ),
                     IconButton(
-                      icon: Icon(Icons.thumb_down),
+                      icon: const Icon(Icons.thumb_down),
                       color: Colors.red, // Change color when downvoted
                       onPressed: () {
                         // Handle downvote action
@@ -85,10 +93,10 @@ class MyPostUI extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 10),
-                Divider(),
-                SizedBox(height: 10),
-                Text(
+                const SizedBox(height: 10),
+                const Divider(),
+                const SizedBox(height: 10),
+                const Text(
                   'Add your views here...',
                   style: TextStyle(fontStyle: FontStyle.italic),
                 ),

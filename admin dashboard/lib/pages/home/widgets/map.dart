@@ -286,7 +286,7 @@ class _ProblemMapState extends State<ProblemMap> {
                 ),
               ),
               Marker(
-                point: const LatLng(28.631918,77.131701),
+                point: const LatLng(28.631918, 77.131701),
                 width: 80,
                 height: 80,
                 child: IconButton(
@@ -297,7 +297,7 @@ class _ProblemMapState extends State<ProblemMap> {
                 ),
               ),
               Marker(
-                point: const LatLng(28.633349,77.090351),
+                point: const LatLng(28.633349, 77.090351),
                 width: 80,
                 height: 80,
                 child: IconButton(
@@ -308,7 +308,7 @@ class _ProblemMapState extends State<ProblemMap> {
                 ),
               ),
               Marker(
-                point: const LatLng(28.674097,77.113077),
+                point: const LatLng(28.674097, 77.113077),
                 width: 80,
                 height: 80,
                 child: IconButton(
@@ -319,7 +319,7 @@ class _ProblemMapState extends State<ProblemMap> {
                 ),
               ),
               Marker(
-                point: const LatLng(28.66491,77.100036),
+                point: const LatLng(28.66491, 77.100036),
                 width: 80,
                 height: 80,
                 child: IconButton(
@@ -330,7 +330,7 @@ class _ProblemMapState extends State<ProblemMap> {
                 ),
               ),
               Marker(
-                point: const LatLng(28.628001,77.077809),
+                point: const LatLng(28.628001, 77.077809),
                 width: 80,
                 height: 80,
                 child: IconButton(
@@ -341,7 +341,7 @@ class _ProblemMapState extends State<ProblemMap> {
                 ),
               ),
               Marker(
-                point: const LatLng(28.652972,77.101269),
+                point: const LatLng(28.652972, 77.101269),
                 width: 80,
                 height: 80,
                 child: IconButton(
@@ -352,7 +352,7 @@ class _ProblemMapState extends State<ProblemMap> {
                 ),
               ),
               Marker(
-                point: const LatLng(28.639225,77.073515),
+                point: const LatLng(28.639225, 77.073515),
                 width: 80,
                 height: 80,
                 child: IconButton(
@@ -362,10 +362,8 @@ class _ProblemMapState extends State<ProblemMap> {
                   iconSize: 31,
                 ),
               ),
-
             ],
           ),
-
 
           // Polylines layer
           PolylineLayer(
