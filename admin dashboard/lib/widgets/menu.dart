@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dashboard/dashboard.dart';
 import '../pages/addissue.dart';
+import '../pages/login.dart';
 
 class Menu extends StatefulWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
@@ -73,6 +74,10 @@ class _MenuState extends State<Menu> {
                         selected = i;
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => DashBoard()));
+                      } else if (i == 4) {
+                        selected = i;
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => LoginPage()));
                       } else {
                         setState(() {
                           selected = i;
