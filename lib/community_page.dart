@@ -69,19 +69,20 @@ class CommunitiesState extends State<Communities> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: Color(0xFF21222D),
+        elevation: 0,
       ),
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        color: const Color.fromARGB(238, 238, 238, 238),
+        //color: const Color.fromARGB(238, 238, 238, 238),
         child: SingleChildScrollView(
           child: Column(
             children: [
               Container(
                 width: double.infinity,
                 decoration: const BoxDecoration(
-                  color: Colors.black,
+                  color: Color(0xFF21222D),
                   borderRadius: BorderRadius.only(
                     bottomRight: Radius.elliptical(45, 0),
                     bottomLeft: Radius.circular(45),
@@ -95,7 +96,7 @@ class CommunitiesState extends State<Communities> {
                       const Text(
                         "Community",
                         style: TextStyle(
-                            fontSize: 40,
+                            fontSize: 35,
                             //fontWeight: FontWeight.bold,
                             //fontStyle: FontStyle.italic,
                             color: Colors.white),
@@ -105,7 +106,7 @@ class CommunitiesState extends State<Communities> {
                         height: 20,
                       ),
                       Card(
-                        elevation: 0,
+                        elevation: 5,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
                         ),
@@ -134,10 +135,10 @@ class CommunitiesState extends State<Communities> {
                 ),
               ),
               MyPostUI(
-                name: "Mary Jane",
+                name: "Manya Singh",
                 postID: "#127",
                 content:
-                    "This is the post content. It can be a long text that wraps to the next line if it is too long.",
+                    "Experiencing frequent power cuts in my area. Urgently need assistance to address the issue.",
                 likes: 20,
                 selectedDislike: selectedLike,
                 selectedLike: selectedDislike,
@@ -147,10 +148,10 @@ class CommunitiesState extends State<Communities> {
                 onComment: onComment,
               ),
               MyPostUI(
-                name: "Mary Jane",
-                postID: "#127",
+                name: "Harshita Arora",
+                postID: "#337",
                 content:
-                    "This is the post content. It can be a long text that wraps to the next line if it is too long.",
+                    "Waterlogging is severe in my neighborhood, affecting daily life. Requesting immediate attention to resolve the issue",
                 likes: 20,
                 selectedDislike: selectedLike,
                 selectedLike: selectedDislike,
@@ -169,21 +170,21 @@ class CommunitiesState extends State<Communities> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.home,
-              color: Colors.black,
+              color: Color(0xFF21222D),
             ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.group,
-              color: Colors.black,
+              color: Color(0xFF21222D),
             ),
             label: 'Community',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.chat,
-              color: Colors.black,
+              color: Color(0xFF21222D),
             ),
             label: 'Chat Bot',
           ),
@@ -247,7 +248,7 @@ class MyPostUI extends StatelessWidget {
                       name,
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 25,
+                        fontSize: 20,
                       ),
                     ),
                     const Text(
@@ -269,7 +270,7 @@ class MyPostUI extends StatelessWidget {
             const SizedBox(height: 15),
             Text(
               content,
-              style: const TextStyle(fontSize: 18),
+              style: const TextStyle(fontSize: 16),
             ),
             const SizedBox(height: 10),
             Row(

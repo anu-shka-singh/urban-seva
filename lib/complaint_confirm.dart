@@ -25,8 +25,8 @@ class _ComplaintConfirmationState extends State<ComplaintConfirmation> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(118, 255, 255, 255),
-        elevation: 0,
+        backgroundColor: const Color(0xFF21222D),
+
         // title: Text('Confirmation'),
       ),
       body: SingleChildScrollView(
@@ -36,25 +36,28 @@ class _ComplaintConfirmationState extends State<ComplaintConfirmation> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              const SizedBox(
+                  height: 30.0),
               const Text(
                 "Confirmation",
                 style: TextStyle(
-                    fontSize: 30,
+                    fontSize: 35,
                     fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 13, 63, 134)),
+                    color: Color(0xFF21222D),
+                ),
               ),
               const SizedBox(
                   height: 50.0), // Add a SizedBox for spacing at the top
               Image.asset(
                 'images/confetti.png', // Replace with your image path
-                height: 300,
-                width: 300,
+                height: 200,
+                width: 200,
               ),
               const SizedBox(height: 40.0),
               const Text(
                 "Complaint Successfully Raised",
                 style: TextStyle(
-                    color: Color.fromARGB(255, 13, 63, 134), fontSize: 20),
+                    color: Color(0xFF21222D), fontSize: 20),
               ),
               const SizedBox(height: 30.0),
               const Text(
@@ -67,12 +70,12 @@ class _ComplaintConfirmationState extends State<ComplaintConfirmation> {
               ),
               const SizedBox(height: 50.0),
               Card(
-                elevation: 0,
-                color: Colors.white,
+                elevation: 10,
+                color: Color(0xFF21222D),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                   side: const BorderSide(
-                    color: Color.fromARGB(255, 13, 63, 134),
+                    color: Color(0xFF21222D),
                     width: 2.0,
                   ),
                 ),
@@ -97,8 +100,9 @@ class _ComplaintConfirmationState extends State<ComplaintConfirmation> {
                         Text(
                           "Go to home page",
                           style: TextStyle(
-                              color: Color.fromARGB(255, 13, 63, 134),
-                              fontSize: 16),
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18),
                         ),
                       ],
                     ),

@@ -44,7 +44,7 @@ class _MapScreenState extends State<MapScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Community Issues Map"),
-        backgroundColor: Colors.black,
+        backgroundColor: Color(0xFF21222D),
       ),
       body: FlutterMap(
         options: const MapOptions(

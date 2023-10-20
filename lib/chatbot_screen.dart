@@ -82,16 +82,16 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
             Container(
               decoration: BoxDecoration(
                 color: message.isMe
-                    ? const Color.fromARGB(255, 40, 57, 86)
-                    : const Color.fromARGB(
-                        255, 6, 29, 68), // Change colors as desired
+                    ? const Color(0xFF21222D)
+                    : const Color(0xFFA9DF21), // Change colors as desired
                 borderRadius: BorderRadius.circular(8),
               ),
               padding: const EdgeInsets.all(10),
               child: Text(
                 message.text,
                 style: const TextStyle(
-                  fontSize: 18, // Adjust the font size as desired
+                  fontSize: 18,
+                  // Adjust the font size as desired
                   color: Colors.white, // Text color for the message
                 ),
               ),
@@ -129,7 +129,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('ChatBot'),
-        backgroundColor: Colors.black,
+        backgroundColor: Color(0xFF21222D),
         foregroundColor: Colors.white,
       ),
       body: Column(
@@ -172,32 +172,32 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
           )
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: _onItemTapped,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
-              color: Colors.black,
-            ),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.group,
-              color: Colors.black,
-            ),
-            label: 'Community',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.chat,
-              color: Colors.black,
-            ),
-            label: 'Chat Bot',
-          ),
-        ],
-      ),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   onTap: _onItemTapped,
+      //   items: const [
+      //     BottomNavigationBarItem(
+      //       icon: Icon(
+      //         Icons.home,
+      //         color: Color(0xFF21222D),
+      //       ),
+      //       label: 'Home',
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(
+      //         Icons.group,
+      //         color: Color(0xFF21222D),
+      //       ),
+      //       label: 'Community',
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(
+      //         Icons.chat,
+      //         color: Color(0xFF21222D),
+      //       ),
+      //       label: 'Chat Bot',
+      //     ),
+      //   ],
+      // ),
     );
   }
 }

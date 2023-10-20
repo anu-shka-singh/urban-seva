@@ -20,7 +20,8 @@ class _AnnouncementsState extends State<Announcements> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: Color(0xFF21222D),
+        elevation: 0,
       ),
       body: Container(
         height: double.infinity,
@@ -32,7 +33,7 @@ class _AnnouncementsState extends State<Announcements> {
               Container(
                 width: double.infinity,
                 decoration: const BoxDecoration(
-                  color: Colors.black,
+                  color: Color(0xFF21222D),
                   borderRadius: BorderRadius.only(
                     bottomRight: Radius.elliptical(45, 0),
                     bottomLeft: Radius.circular(45),
@@ -59,6 +60,7 @@ class _AnnouncementsState extends State<Announcements> {
                   ),
                 ),
               ),
+              SizedBox(height: 20,),
               CustomCard(
                 dept: "Delhi Jal Board",
                 dateTime: "20th Oct at 12:20PM",

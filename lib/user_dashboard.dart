@@ -18,9 +18,9 @@ class Dashboard extends StatefulWidget {
 class DashboardState extends State<Dashboard> {
   List<bool> completedTasks = [true, false, false, false, false];
   final List<Color> taskColors = [
-    const Color.fromARGB(255, 178, 221, 245),
-    const Color.fromARGB(255, 198, 248, 194),
-    const Color.fromARGB(255, 231, 184, 246),
+    const Color.fromARGB(255, 255, 255, 255),
+    const Color.fromARGB(255, 255, 255, 255),
+    const Color.fromARGB(255, 255, 255, 255),
     const Color.fromARGB(255, 251, 243, 176),
     const Color.fromARGB(255, 251, 189, 220),
   ];
@@ -69,7 +69,7 @@ class DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: Color(0xFF21222D),
         elevation: 0,
         automaticallyImplyLeading: false,
         actions: [
@@ -100,11 +100,14 @@ class DashboardState extends State<Dashboard> {
         ],
       ),
       body: SingleChildScrollView(
-          child: Column(children: [
+          child: Column(
+
+              children: [
         Container(
+          //color: Colors.grey.shade100,
           width: double.infinity,
           decoration: const BoxDecoration(
-            color: Colors.black,
+            color: Color(0xFF21222D),
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(70),
             ),
@@ -150,50 +153,61 @@ class DashboardState extends State<Dashboard> {
         const SizedBox(
           height: 20,
         ),
-        Card(
-          color: const Color.fromARGB(255, 202, 244, 240),
-          margin: const EdgeInsets.all(14.0),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      "Issues in your locality",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                Card(
+                  elevation: 9,
+                  color: const Color.fromARGB(255, 255, 255, 255),
+                  margin: const EdgeInsets.all(14.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Replace the Icon with an Image widget
+                        Image.asset(
+                          'images/map.png', // Provide the path to your image
+                          width: 70, // Adjust the width as needed
+                          height: 90, // Adjust the height as needed
+                        ),
+                        SizedBox(width: 20),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Issues Near You",
+                                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                                ),
+                                IconButton(
+                                  icon: Icon(Icons.arrow_forward),
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => const MapScreen()),
+                                    );
+                                  },
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              "See various issues in your locality",
+                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(height: 20),
+                          ],
+                        ),
+                      ],
                     ),
-                    IconButton(
-                      icon: const Icon(Icons.arrow_forward),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const MapScreen()),
-                        );
-                      },
-                    ),
-                  ],
+                  ),
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const Text(
-                  "See various issues in your locality",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 20),
-              ],
-            ),
-          ),
-        ),
-        Container(
+
+
+                Container(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -326,21 +340,24 @@ class DashboardState extends State<Dashboard> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.home,
-              color: Colors.black,
+              color: Color(0xFF21222D),
+              size: 30,
             ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.group,
-              color: Colors.black,
+              color: Color(0xFF21222D),
+              size: 30,
             ),
             label: 'Community',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.chat,
-              color: Colors.black,
+              color: Color(0xFF21222D),
+              size: 30,
             ),
             label: 'Chat Bot',
           ),
@@ -358,7 +375,7 @@ class DashboardState extends State<Dashboard> {
                   builder: (context) => const SelectComplaintTypePage()),
             );
           },
-          backgroundColor: Colors.green,
+          backgroundColor: Color(0xFF21222D),
           child: const Icon(
             Icons.add,
             size: 50.0,

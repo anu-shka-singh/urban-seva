@@ -51,16 +51,16 @@ class _TakeComplainState extends State<TakeComplain> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Raise Complaint'),
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
+        backgroundColor: Color(0xFF21222D),
+        foregroundColor: Colors.white,
         elevation: 0,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(1.0),
+        padding: const EdgeInsets.all(16.0),
         child: Form(
           child: SingleChildScrollView(
             child: Container(
-              color: const Color.fromARGB(255, 236, 235, 235),
+              color: Color(0xF9F9F9FF),
               child: Column(
                 children: [
                   const SizedBox(
@@ -94,7 +94,7 @@ class _TakeComplainState extends State<TakeComplain> {
                     ),
                   ),
                   Card(
-                    elevation: 0,
+                    elevation: 5,
                     color: Colors.white,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -105,6 +105,7 @@ class _TakeComplainState extends State<TakeComplain> {
                             "Tell us your problem?",
                             style: TextStyle(
                               fontSize: 20.0,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                           const SizedBox(height: 8),
@@ -140,7 +141,7 @@ class _TakeComplainState extends State<TakeComplain> {
                     ),
                   ),
                   Card(
-                    elevation: 0,
+                    elevation: 5,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
@@ -150,6 +151,7 @@ class _TakeComplainState extends State<TakeComplain> {
                             "Add Details",
                             style: TextStyle(
                               fontSize: 20.0,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                           const SizedBox(height: 8),
@@ -183,7 +185,7 @@ class _TakeComplainState extends State<TakeComplain> {
                     ),
                   ),
                   Card(
-                    elevation: 0,
+                    elevation: 5,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
@@ -193,6 +195,7 @@ class _TakeComplainState extends State<TakeComplain> {
                             "Add Photos",
                             style: TextStyle(
                               fontSize: 20.0,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                           const SizedBox(height: 8),
@@ -254,6 +257,7 @@ class _TakeComplainState extends State<TakeComplain> {
                     ),
                   ),
                   Card(
+                    elevation: 5,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
@@ -274,7 +278,7 @@ class _TakeComplainState extends State<TakeComplain> {
                               const Text(
                                 "Is the complaint urgent?",
                                 style: TextStyle(
-                                    color: Colors.black, fontSize: 16),
+                                    color: Colors.black, fontSize: 18),
                               ),
                             ],
                           ),
@@ -292,7 +296,7 @@ class _TakeComplainState extends State<TakeComplain> {
                               ),
                             ),
                             style: ElevatedButton.styleFrom(
-                              primary: Colors.blueGrey, // Button color
+                              primary: Color(0xFF21222D), // Button color
                               onPrimary: Colors.white, // Text color
                               fixedSize: const Size(150, 50),
                               shape: RoundedRectangleBorder(

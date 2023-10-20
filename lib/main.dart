@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(primaryColor: Colors.black),
+      theme: ThemeData(primaryColor: Color(0xFF21222D)),
       title: 'Urban Seva',
       home: Dashboard(
         user: const {'name': 'Diya', 'address': 'Laxmi Nagar, Delhi'},
