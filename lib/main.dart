@@ -1,4 +1,4 @@
-import 'package:complaint_app/signin_page.dart';
+import 'package:complaint_app/splash.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
         primaryColor: const Color(0xFF21222D),
       ),
       title: 'Urban Seva',
-      home: const LoginPage(),
+      home: const MyHomePage(title: "Urban Seva"),
       debugShowCheckedModeBanner: false,
     );
   }
