@@ -13,6 +13,10 @@ class LoginPage extends StatefulWidget {
   _LoginState createState() => _LoginState();
 }
 
+void main() {
+  runApp(const MaterialApp(home: LoginPage()));
+}
+
 class _LoginState extends State<LoginPage> {
   final TextEditingController _passwordTextController = TextEditingController();
   final TextEditingController _emailTextController = TextEditingController();
@@ -43,8 +47,8 @@ class _LoginState extends State<LoginPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Sign In'),
-        backgroundColor: Colors.red,
         automaticallyImplyLeading: false,
+        backgroundColor: const Color(0xFF21222D),
       ),
       body: SizedBox(
         height: size.height,
@@ -62,7 +66,7 @@ class _LoginState extends State<LoginPage> {
                   height: 20,
                   width: 20,
                 ),
-                Image.asset("images/login.png"),
+                Image.asset("images/urban.png"),
                 const SizedBox(
                   height: 40,
                 ),
@@ -79,10 +83,9 @@ class _LoginState extends State<LoginPage> {
                 ),
                 TextFormField(
                   decoration: const InputDecoration(
-                    labelText: "Enter Password",
-                    icon: Icon(Icons.lock_outline),
-                    border: OutlineInputBorder(), // Add a border
-                  ),
+                      labelText: "Enter Password",
+                      icon: Icon(Icons.lock_outline),
+                      border: OutlineInputBorder()),
                   controller: _passwordTextController,
                   obscureText: true,
                 ),
@@ -100,7 +103,10 @@ class _LoginState extends State<LoginPage> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => Dashboard(
-                          user: const {},
+                          user: const {
+                            'name': 'Diya',
+                            'address': 'Laxmi Nagar, Delhi'
+                          },
                         ),
                       ),
                     );
@@ -138,7 +144,7 @@ class _LoginState extends State<LoginPage> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Text("Don't have an account? ",
-            style: TextStyle(color: Colors.red)),
+            style: TextStyle(color: Color(0xFF21222D))),
         GestureDetector(
           onTap: () {
             Navigator.push(context,
@@ -146,7 +152,8 @@ class _LoginState extends State<LoginPage> {
           },
           child: const Text(
             "Sign Up",
-            style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                color: Color(0xFF21222D), fontWeight: FontWeight.bold),
           ),
         )
       ],
@@ -158,6 +165,7 @@ class _LoginState extends State<LoginPage> {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
+        backgroundColor: const Color(0xFF21222D),
         elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),

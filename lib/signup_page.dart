@@ -24,6 +24,7 @@ class _SignUpState extends State<SignUp> {
       appBar: AppBar(
         title: const Text("Sign Up"),
         automaticallyImplyLeading: false,
+        backgroundColor: const Color(0xFF21222D),
       ),
       body: SizedBox(
         height: size.height,
@@ -41,7 +42,7 @@ class _SignUpState extends State<SignUp> {
                   height: 20,
                   width: 20,
                 ),
-                Image.asset("images/login.png"),
+                Image.asset("images/urban.png"),
                 const SizedBox(
                   height: 40,
                 ),
@@ -107,8 +108,11 @@ class _SignUpState extends State<SignUp> {
                               onPressed: () => Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                        Dashboard(user: const {})),
+                                    builder: (context) => Dashboard(
+                                            user: const {
+                                              'name': 'Diya',
+                                              'address': 'Laxmi Nagar, Delhi'
+                                            })),
                               ),
                               child: const Text('OK'),
                             ),
@@ -152,7 +156,7 @@ class _SignUpState extends State<SignUp> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Text("Already have an account? ",
-            style: TextStyle(color: Colors.red)),
+            style: TextStyle(color: Color(0xFF21222D))),
         GestureDetector(
           onTap: () {
             Navigator.push(context,
@@ -160,7 +164,8 @@ class _SignUpState extends State<SignUp> {
           },
           child: const Text(
             "Sign In",
-            style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                color: Color(0xFF21222D), fontWeight: FontWeight.bold),
           ),
         )
       ],
@@ -187,6 +192,7 @@ Widget signInSignUpButton(
   return ElevatedButton(
     onPressed: onPressed,
     style: ElevatedButton.styleFrom(
+      backgroundColor: const Color(0xFF21222D),
       elevation: 0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(30),

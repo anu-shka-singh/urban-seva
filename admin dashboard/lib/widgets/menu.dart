@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dashboard/dashboard.dart';
-import 'package:flutter_dashboard/pages/home/home_page.dart';
 import '../pages/addissue.dart';
 
 class Menu extends StatefulWidget {
@@ -70,13 +69,11 @@ class _MenuState extends State<Menu> {
                         Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => const AddIssue(),
                         ));
-                      } 
-                      else if(i == 0) {
+                      } else if (i == 0) {
                         selected = i;
                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => DashBoard()));
-                      }
-                        else {
+                            builder: (context) => DashBoard()));
+                      } else {
                         setState(() {
                           selected = i;
                         });

@@ -26,7 +26,7 @@ class _ComplaintConfirmationState extends State<ComplaintConfirmation> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF21222D),
-
+        automaticallyImplyLeading: false,
         // title: Text('Confirmation'),
       ),
       body: SingleChildScrollView(
@@ -36,14 +36,13 @@ class _ComplaintConfirmationState extends State<ComplaintConfirmation> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(
-                  height: 30.0),
+              const SizedBox(height: 30.0),
               const Text(
                 "Confirmation",
                 style: TextStyle(
-                    fontSize: 35,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF21222D),
+                  fontSize: 35,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF21222D),
                 ),
               ),
               const SizedBox(
@@ -56,8 +55,7 @@ class _ComplaintConfirmationState extends State<ComplaintConfirmation> {
               const SizedBox(height: 40.0),
               const Text(
                 "Complaint Successfully Raised",
-                style: TextStyle(
-                    color: Color(0xFF21222D), fontSize: 20),
+                style: TextStyle(color: Color(0xFF21222D), fontSize: 20),
               ),
               const SizedBox(height: 30.0),
               const Text(
@@ -71,7 +69,7 @@ class _ComplaintConfirmationState extends State<ComplaintConfirmation> {
               const SizedBox(height: 50.0),
               Card(
                 elevation: 10,
-                color: Color(0xFF21222D),
+                color: const Color(0xFF21222D),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                   side: const BorderSide(

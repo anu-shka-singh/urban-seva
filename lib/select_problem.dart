@@ -36,10 +36,9 @@ class _SelectComplaintTypePageState extends State<SelectComplaintTypePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Color(0xFF21222D),
+          backgroundColor: const Color(0xFF21222D),
           title: const Text(""),
           foregroundColor: Colors.white,
-
         ),
         body: Center(
           child: SingleChildScrollView(
@@ -67,7 +66,7 @@ class _SelectComplaintTypePageState extends State<SelectComplaintTypePage> {
                   height: 50,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
-                    color: Color(0xFF21222D),
+                    color: const Color(0xFF21222D),
                   ),
                   child: ElevatedButton(
                     onPressed: navigateToSelectedPage,
@@ -180,6 +179,7 @@ class UserTypeGrid extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class ProbTypeTile extends StatelessWidget {
   final IconData icon;
   final String text;

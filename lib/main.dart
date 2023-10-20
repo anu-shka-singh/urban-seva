@@ -1,4 +1,4 @@
-import 'package:complaint_app/user_dashboard.dart';
+import 'package:complaint_app/signin_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,11 +10,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(primaryColor: Color(0xFF21222D)),
-      title: 'Urban Seva',
-      home: Dashboard(
-        user: const {'name': 'Diya', 'address': 'Laxmi Nagar, Delhi'},
+      theme: ThemeData(
+        primaryColor: const Color(0xFF21222D),
       ),
+      title: 'Urban Seva',
+      home: const LoginPage(),
       debugShowCheckedModeBanner: false,
     );
   }

@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'IBMPlexSans',
         brightness: Brightness.light, // Change to light mode
       ),
-      home: LoginPage(),
+      home: const LoginPage(),
     );
   }
 }

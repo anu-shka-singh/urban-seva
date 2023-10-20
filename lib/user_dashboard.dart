@@ -1,8 +1,8 @@
 import 'package:complaint_app/community_page.dart';
 import 'package:complaint_app/announcements.dart';
-import 'package:complaint_app/complaint_confirm.dart';
 import 'package:complaint_app/map_page.dart';
 import 'package:complaint_app/select_problem.dart';
+import 'package:complaint_app/signin_page.dart';
 import 'package:flutter/material.dart';
 import 'chatbot_screen.dart';
 
@@ -69,14 +69,13 @@ class DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF21222D),
+        backgroundColor: const Color(0xFF21222D),
         elevation: 0,
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
             icon: const Icon(Icons.notifications),
             onPressed: () {
-              final data = widget.user;
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -92,7 +91,7 @@ class DashboardState extends State<Dashboard> {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const ComplaintConfirmation(),
+                  builder: (context) => const LoginPage(),
                 ),
               );
             },
@@ -100,9 +99,7 @@ class DashboardState extends State<Dashboard> {
         ],
       ),
       body: SingleChildScrollView(
-          child: Column(
-
-              children: [
+          child: Column(children: [
         Container(
           //color: Colors.grey.shade100,
           width: double.infinity,
@@ -153,61 +150,62 @@ class DashboardState extends State<Dashboard> {
         const SizedBox(
           height: 20,
         ),
-                Card(
-                  elevation: 9,
-                  color: const Color.fromARGB(255, 255, 255, 255),
-                  margin: const EdgeInsets.all(14.0),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+        Card(
+          elevation: 9,
+          color: const Color.fromARGB(255, 255, 255, 255),
+          margin: const EdgeInsets.all(14.0),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Replace the Icon with an Image widget
+                Image.asset(
+                  'images/map.png', // Provide the path to your image
+                  width: 70, // Adjust the width as needed
+                  height: 90, // Adjust the height as needed
+                ),
+                const SizedBox(width: 20),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        // Replace the Icon with an Image widget
-                        Image.asset(
-                          'images/map.png', // Provide the path to your image
-                          width: 70, // Adjust the width as needed
-                          height: 90, // Adjust the height as needed
+                        const Text(
+                          "Issues Near You",
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(width: 20),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Issues Near You",
-                                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                                ),
-                                IconButton(
-                                  icon: Icon(Icons.arrow_forward),
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(builder: (context) => const MapScreen()),
-                                    );
-                                  },
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 10),
-                            Text(
-                              "See various issues in your locality",
-                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                            ),
-                            SizedBox(height: 20),
-                          ],
+                        IconButton(
+                          icon: const Icon(Icons.arrow_forward),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const MapScreen()),
+                            );
+                          },
                         ),
                       ],
                     ),
-                  ),
+                    const SizedBox(height: 10),
+                    const Text(
+                      "See various issues in your locality",
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 20),
+                  ],
                 ),
-
-
-                Container(
+              ],
+            ),
+          ),
+        ),
+        Container(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -375,7 +373,7 @@ class DashboardState extends State<Dashboard> {
                   builder: (context) => const SelectComplaintTypePage()),
             );
           },
-          backgroundColor: Color(0xFF21222D),
+          backgroundColor: const Color(0xFF21222D),
           child: const Icon(
             Icons.add,
             size: 50.0,

@@ -20,7 +20,7 @@ class _AnnouncementsState extends State<Announcements> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF21222D),
+        backgroundColor: const Color(0xFF21222D),
         elevation: 0,
       ),
       body: Container(
@@ -60,26 +60,28 @@ class _AnnouncementsState extends State<Announcements> {
                   ),
                 ),
               ),
-              SizedBox(height: 20,),
-              CustomCard(
+              const SizedBox(
+                height: 20,
+              ),
+              const CustomCard(
                 dept: "Delhi Jal Board",
                 dateTime: "20th Oct at 12:20PM",
                 msg:
                     "All the residents of the Dwarka Sector 12 area kindly note that water services have been disbanded till 9PM today. We regret the inconvinience caused due to this.",
               ),
-              CustomCard(
+              const CustomCard(
                 dept: "NDMC",
                 dateTime: "20th Oct at 1:00PM",
                 msg:
                     "All residents of Rohini Sector 10 are hereby advised to not travel towards the main road with their vehicles as it is being closed due to construction.",
               ),
-              CustomCard(
+              const CustomCard(
                 dept: "BSES",
                 dateTime: "20th Oct at 1:37PM",
                 msg:
                     "Residents of Janakpuri Block J are hereby informed that there will be a power outage in the area from 8PM to 12AM. Inconvenience caused is regretted.",
               ),
-              CustomCard(
+              const CustomCard(
                 dept: "SDMC",
                 dateTime: "19th Oct at 5PM",
                 msg:
@@ -98,7 +100,7 @@ class CustomCard extends StatelessWidget {
   final String dateTime;
   final String msg;
 
-  CustomCard({
+  const CustomCard({
     super.key,
     required this.dept,
     required this.dateTime,

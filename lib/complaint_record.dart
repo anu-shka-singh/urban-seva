@@ -51,7 +51,7 @@ class _TakeComplainState extends State<TakeComplain> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Raise Complaint'),
-        backgroundColor: Color(0xFF21222D),
+        backgroundColor: const Color(0xFF21222D),
         foregroundColor: Colors.white,
         elevation: 0,
       ),
@@ -60,7 +60,7 @@ class _TakeComplainState extends State<TakeComplain> {
         child: Form(
           child: SingleChildScrollView(
             child: Container(
-              color: Color(0xF9F9F9FF),
+              color: const Color(0xF9F9F9FF),
               child: Column(
                 children: [
                   const SizedBox(
@@ -296,7 +296,7 @@ class _TakeComplainState extends State<TakeComplain> {
                               ),
                             ),
                             style: ElevatedButton.styleFrom(
-                              primary: Color(0xFF21222D), // Button color
+                              primary: const Color(0xFF21222D), // Button color
                               onPrimary: Colors.white, // Text color
                               fixedSize: const Size(150, 50),
                               shape: RoundedRectangleBorder(

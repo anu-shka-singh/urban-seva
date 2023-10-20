@@ -69,10 +69,10 @@ class CommunitiesState extends State<Communities> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF21222D),
+        backgroundColor: const Color(0xFF21222D),
         elevation: 0,
       ),
-      body: Container(
+      body: SizedBox(
         height: double.infinity,
         width: double.infinity,
         //color: const Color.fromARGB(238, 238, 238, 238),

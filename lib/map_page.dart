@@ -13,7 +13,7 @@ class MapScreen extends StatefulWidget {
 }
 
 void main() {
-  runApp(MaterialApp(home: const MapScreen()));
+  runApp(const MaterialApp(home: MapScreen()));
 }
 
 class _MapScreenState extends State<MapScreen> {
@@ -44,7 +44,7 @@ class _MapScreenState extends State<MapScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Community Issues Map"),
-        backgroundColor: Color(0xFF21222D),
+        backgroundColor: const Color(0xFF21222D),
       ),
       body: FlutterMap(
         options: const MapOptions(
