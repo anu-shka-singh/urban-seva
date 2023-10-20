@@ -2,6 +2,8 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dashboard/responsive.dart';
 
+import '../pages/roadissue.dart';
+
 class Profile extends StatelessWidget {
   const Profile({Key? key}) : super(key: key);
 
@@ -164,6 +166,7 @@ class _Segment {
   _Segment(this.title, this.value);
 }
 
+
 class ProfileTile extends StatelessWidget {
   final IconData icon;
   final String title;
@@ -173,32 +176,40 @@ class ProfileTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(1),
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.3),
-            spreadRadius: 3,
-            blurRadius: 5,
-            offset: const Offset(0, 3),
-          ),
-        ],
-      ),
-      padding: const EdgeInsets.all(16), // Add padding
-      child: Row(
-        children: [
-          Icon(icon, size: 36, color: Colors.blueGrey),
-          const SizedBox(width: 16), // Add spacing between the icon and text
-          Text(
-            title,
-            style: const TextStyle(
-              fontSize: 16,
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => RoadTransportationPage())); // Navigate to the issue page
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(1),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.3),
+              spreadRadius: 3,
+              blurRadius: 5,
+              offset: const Offset(0, 3),
             ),
-          ),
-        ],
+          ],
+        ),
+        padding: const EdgeInsets.all(16), // Add padding
+        child: Row(
+          children: [
+            Icon(icon, size: 36, color: Colors.blueGrey),
+            const SizedBox(width: 16), // Add spacing between the icon and text
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 16,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 }
+
+
