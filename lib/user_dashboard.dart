@@ -1,8 +1,10 @@
+import 'package:complaint_app/community_page.dart';
 import 'package:complaint_app/complaint_confirm.dart';
 import 'package:complaint_app/map_page.dart';
 import 'package:complaint_app/select_problem.dart';
 import 'package:flutter/material.dart';
 
+import 'announcements.dart';
 import 'chatbot_screen.dart';
 
 class Dashboard extends StatefulWidget {
@@ -54,12 +56,12 @@ class DashboardState extends State<Dashboard> {
     } else if (index == 1) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const ComplaintConfirmation()),
+        MaterialPageRoute(builder: (context) => Communities()),
       );
     } else if (index == 2) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const ChatBotScreen()),
+        MaterialPageRoute(builder: (context) => ChatBotScreen()),
       );
     }
   }
@@ -78,9 +80,7 @@ class DashboardState extends State<Dashboard> {
               print(data);
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => const ComplaintConfirmation(),
-                ),
+                MaterialPageRoute(builder: (context) => Announcements()),
               );
             },
           ),
@@ -99,239 +99,255 @@ class DashboardState extends State<Dashboard> {
         ],
       ),
       body: SingleChildScrollView(
-          child: Column(children: [
-        Container(
-          width: double.infinity,
-          decoration: const BoxDecoration(
-            color: Colors.blue,
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(70),
-            ),
-          ),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20.0, 0.0, 12.0, 20.0),
-                child: Image.asset(
-                  'images/female.png',
-                  height: 60,
-                  width: 60,
+        child: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              decoration: const BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(70),
                 ),
               ),
-              Column(
+              child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    widget.user['name'],
-                    style: const TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20.0, 0.0, 12.0, 20.0),
+                    child: Image.asset(
+                      'images/female.png',
+                      height: 60,
+                      width: 60,
                     ),
                   ),
-                  Text(
-                    widget.user['address'],
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 30,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget.user['name'],
+                        style: const TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        widget.user['address'],
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ],
-          ),
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        Card(
-          color: const Color.fromARGB(255, 202, 244, 240),
-          margin: const EdgeInsets.all(14.0),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      "Issues in your locality",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                    IconButton(
-                      icon: const Icon(Icons.arrow_forward),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const MapScreen()),
-                        );
-                      },
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const Text(
-                  "See various issues in your locality",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 20),
-              ],
             ),
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                "My Issues",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+            const SizedBox(
+              height: 20,
+            ),
+            Card(
+              color: const Color.fromARGB(255, 202, 244, 240),
+              margin: const EdgeInsets.all(14.0),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30),
               ),
-              const SizedBox(height: 10),
-              ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: issue.length,
-                itemBuilder: (context, index) {
-                  return Card(
-                    color: taskColors[index],
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    elevation: 2,
-                    margin: const EdgeInsets.all(12.0),
-                    child: Column(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        ListTile(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          contentPadding: const EdgeInsets.all(16.0),
-                          title: Text(
-                            issue[index],
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                            ),
-                          ),
-                          subtitle: Text(
-                            sub[index],
-                            style: const TextStyle(
-                              color: Color.fromARGB(255, 3, 31, 54),
-                              fontWeight: FontWeight.w400,
-                              fontSize: 16,
-                            ),
-                          ),
-                          tileColor: taskColors[index],
+                        const Text(
+                          "Issues in your locality",
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
                         ),
-                        Row(
-                          children: [
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Column(
-                              children:
-                                  completedTasks.asMap().entries.map((entry) {
-                                final taskIndex = entry.key;
-                                final completed = entry.value;
-                                return Column(
-                                  children: [
-                                    Container(
-                                      width: 16,
-                                      height: 8,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: completed
-                                            ? Colors.green
-                                            : Colors.red,
-                                      ),
-                                    ),
-                                    if (taskIndex < completedTasks.length - 1)
-                                      Container(
-                                        width: 3,
-                                        height: 29,
-                                        color: completed
-                                            ? Colors.green
-                                            : Colors.grey,
-                                      ),
-                                  ],
-                                );
-                              }).toList(),
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            const Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text("Issue Registered",
-                                    style: TextStyle(fontSize: 14)),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Text("Forwarded to authorities",
-                                    style: TextStyle(fontSize: 14)),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Text("Action Initiated",
-                                    style: TextStyle(fontSize: 14)),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Text("Action in Progress",
-                                    style: TextStyle(fontSize: 14)),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Text("Resolved",
-                                    style: TextStyle(fontSize: 14)),
-                              ],
-                            ),
-                          ],
+                        IconButton(
+                          icon: const Icon(Icons.arrow_forward),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const MapScreen()),
+                            );
+                          },
                         ),
-                        const SizedBox(
-                          height: 10,
-                        )
                       ],
                     ),
-                  );
-                },
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Text(
+                      "See various issues in your locality",
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 20),
+                  ],
+                ),
               ),
-            ],
-          ),
-        )
-      ])),
+            ),
+            Container(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "My Issues",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: issue.length,
+                    itemBuilder: (context, index) {
+                      return Card(
+                        color: taskColors[index],
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        elevation: 2,
+                        margin: const EdgeInsets.all(12.0),
+                        child: Column(
+                          children: [
+                            ListTile(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              contentPadding: const EdgeInsets.all(16.0),
+                              title: Text(
+                                issue[index],
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                ),
+                              ),
+                              subtitle: Text(
+                                sub[index],
+                                style: const TextStyle(
+                                  color: Color.fromARGB(255, 3, 31, 54),
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 16,
+                                ),
+                              ),
+                              tileColor: taskColors[index],
+                            ),
+                            Row(
+                              children: [
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Column(
+                                  children: completedTasks
+                                      .asMap()
+                                      .entries
+                                      .map((entry) {
+                                    final taskIndex = entry.key;
+                                    final completed = entry.value;
+                                    return Column(
+                                      children: [
+                                        Container(
+                                          width: 16,
+                                          height: 8,
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: completed
+                                                ? Colors.green
+                                                : Colors.red,
+                                          ),
+                                        ),
+                                        if (taskIndex <
+                                            completedTasks.length - 1)
+                                          Container(
+                                            width: 3,
+                                            height: 29,
+                                            color: completed
+                                                ? Colors.green
+                                                : Colors.grey,
+                                          ),
+                                      ],
+                                    );
+                                  }).toList(),
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                const Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text("Issue Registered",
+                                        style: TextStyle(fontSize: 14)),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    Text("Forwarded to authorities",
+                                        style: TextStyle(fontSize: 14)),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    Text("Action Initiated",
+                                        style: TextStyle(fontSize: 14)),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    Text("Action in Progress",
+                                        style: TextStyle(fontSize: 14)),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    Text("Resolved",
+                                        style: TextStyle(fontSize: 14)),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            )
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: _onItemTapped,
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(
+              Icons.home,
+              color: Colors.black,
+            ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.group),
+            icon: Icon(
+              Icons.group,
+              color: Colors.black,
+            ),
             label: 'Community',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
+            icon: Icon(
+              Icons.chat,
+              color: Colors.black,
+            ),
             label: 'Chat Bot',
           ),
         ],

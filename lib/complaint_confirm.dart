@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'user_dashboard.dart';
+
 void main() {
   runApp(
     const MaterialApp(
@@ -75,7 +77,19 @@ class _ComplaintConfirmationState extends State<ComplaintConfirmation> {
                   ),
                 ),
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Dashboard(
+                          user: const {
+                            'name': 'Diya',
+                            'address': 'Laxmi Nagar, Delhi'
+                          },
+                        ),
+                      ),
+                    );
+                  },
                   child: const Padding(
                     padding: EdgeInsets.all(16),
                     child: Column(
