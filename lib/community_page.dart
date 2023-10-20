@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'chatbot_screen.dart';
+import 'user_dashboard.dart';
+
 void main() {
   runApp(
     MaterialApp(
@@ -38,6 +41,28 @@ class CommunitiesState extends State<Communities> {
     });
   }
 
+  void _onItemTapped(int index) {
+    if (index == 0) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => Dashboard(
+                  user: const {'name': 'Diya', 'address': 'Laxmi Nagar, Delhi'},
+                )),
+      );
+    } else if (index == 1) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Communities()),
+      );
+    } else if (index == 2) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ChatBotScreen()),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +74,7 @@ class CommunitiesState extends State<Communities> {
           child: Column(
             children: [
               Container(
-                width: double.infinity,                
+                width: double.infinity,
                 decoration: BoxDecoration(
                   color: Colors.black,
                   borderRadius: BorderRadius.only(
@@ -83,7 +108,8 @@ class CommunitiesState extends State<Communities> {
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.only(left: 12, right: 8, top: 6, bottom: 6),
+                          padding: const EdgeInsets.only(
+                              left: 12, right: 8, top: 6, bottom: 6),
                           child: TextField(
                             textAlignVertical: TextAlignVertical.center,
                             //controller: _searchController,
@@ -101,7 +127,6 @@ class CommunitiesState extends State<Communities> {
                           ),
                         ),
                       ),
-                      
                     ],
                   ),
                 ),
@@ -135,6 +160,32 @@ class CommunitiesState extends State<Communities> {
             ],
           ),
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: _onItemTapped,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home,
+              color: Colors.black,
+            ),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.group,
+              color: Colors.black,
+            ),
+            label: 'Community',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.chat,
+              color: Colors.black,
+            ),
+            label: 'Chat Bot',
+          ),
+        ],
       ),
     );
   }

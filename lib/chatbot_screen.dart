@@ -3,6 +3,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import 'community_page.dart';
+import 'user_dashboard.dart';
+
 void main() {
   runApp(const ChatBotScreen());
 }
@@ -77,8 +80,8 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
             Container(
               decoration: BoxDecoration(
                 color: message.isMe
-                    ? const Color.fromARGB(255, 193, 163, 250)
-                    : Colors.deepPurpleAccent, // Change colors as desired
+                    ? Color.fromARGB(255, 225, 225, 225)
+                    : Colors.black, // Change colors as desired
                 borderRadius: BorderRadius.circular(8),
               ),
               padding: const EdgeInsets.all(10),
@@ -98,12 +101,34 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
     );
   }
 
+  void _onItemTapped(int index) {
+    if (index == 0) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => Dashboard(
+                  user: const {'name': 'Diya', 'address': 'Laxmi Nagar, Delhi'},
+                )),
+      );
+    } else if (index == 1) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Communities()),
+      );
+    } else if (index == 2) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ChatBotScreen()),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('ChatBot'),
-        backgroundColor: Colors.deepPurpleAccent,
+        backgroundColor: Colors.black,
         foregroundColor: Colors.white,
       ),
       body: Column(
@@ -144,6 +169,32 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
               ],
             ),
           )
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: _onItemTapped,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home,
+              color: Colors.black,
+            ),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.group,
+              color: Colors.black,
+            ),
+            label: 'Community',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.chat,
+              color: Colors.black,
+            ),
+            label: 'Chat Bot',
+          ),
         ],
       ),
     );
