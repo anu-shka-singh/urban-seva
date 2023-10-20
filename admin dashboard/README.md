@@ -1,4 +1,3 @@
-# Flutter responsive dashboard / admin panel UI
+# Dashboard for monitoring city infrastructure issues
 
-Supports for Mobile/Web/Windows/Mac/Linux app.
 
