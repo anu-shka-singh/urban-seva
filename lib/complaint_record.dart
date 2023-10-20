@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'complaint_confirm.dart';
+import 'package:tflite/tflite.dart';
 
 class TakeComplain extends StatefulWidget {
   final String probType;
@@ -13,6 +14,38 @@ class TakeComplain extends StatefulWidget {
 
 class _TakeComplainState extends State<TakeComplain> {
   File? _image; // Variable to store the taken image
+  List _predictions = [];
+
+  @override
+  void initState() {
+    super.initState();
+    loadmodel().then((value) {
+      setState(() {});
+    });
+  }
+
+  detectimage(File image) async {
+    var prediction = await Tflite.runModelOnImage(
+        path: image.path,
+        numResults: 5,
+        threshold: 0.6,
+        imageMean: 127.5,
+        imageStd: 127.5);
+
+    setState(() {
+      _predictions = prediction!;
+    });
+  }
+
+  loadmodel() async {
+    await Tflite.loadModel(
+        model: 'assets/classify.tflite', labels: 'assets/labels.txt');
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   Future<void> _openCamera() async {
     final image = await ImagePicker().pickImage(source: ImageSource.camera);
@@ -22,6 +55,20 @@ class _TakeComplainState extends State<TakeComplain> {
         _image = File(image.path); // Store the taken image
       });
     }
+
+    detectimage(_image!);
+  }
+
+  Future<void> _openGallery() async {
+    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+
+    if (image != null) {
+      setState(() {
+        _image = File(image.path); // Store the taken image
+      });
+    }
+
+    detectimage(_image!);
   }
 
   List<String> problems = [
@@ -210,8 +257,11 @@ class _TakeComplainState extends State<TakeComplain> {
                             height: 10,
                           ),
                           GestureDetector(
-                            onTap: () {
-                              _openCamera(); // Open the camera to take a picture
+                            onTap: () async {
+                              await _openCamera(); // Open the camera to take a picture
+                              print(_predictions[0]['label']
+                                  .toString()
+                                  .substring(2));
                             },
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -237,18 +287,35 @@ class _TakeComplainState extends State<TakeComplain> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Container(
-                                width: double.infinity,
-                                height: 150.0,
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    width: 1.0,
-                                    color: Colors.grey,
-                                  ),
-                                  borderRadius: BorderRadius.circular(5.0),
-                                ),
-                                child: Image.file(
-                                  _image!,
-                                  fit: BoxFit.cover,
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      width: double.infinity,
+                                      height: 150.0,
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          width: 1.0,
+                                          color: Colors.grey,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(5.0),
+                                      ),
+                                      child: Image.file(
+                                        _image!,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                    SizedBox(height: 4.0),
+                                    Text(
+                                      _predictions[0]['label']
+                                          .toString()
+                                          .substring(2),
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    //Text(_predictions[0]['confidence'].toString()),
+                                  ],
                                 ),
                               ),
                             ),
