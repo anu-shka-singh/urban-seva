@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 import 'complaint_confirm.dart';
 
 class TakeComplain extends StatefulWidget {
@@ -11,6 +12,18 @@ class TakeComplain extends StatefulWidget {
 }
 
 class _TakeComplainState extends State<TakeComplain> {
+  File? _image; // Variable to store the taken image
+
+  Future<void> _openCamera() async {
+    final image = await ImagePicker().pickImage(source: ImageSource.camera);
+
+    if (image != null) {
+      setState(() {
+        _image = File(image.path); // Store the taken image
+      });
+    }
+  }
+
   List<String> problems = [
     "Garbage on Street",
     "Pothole",
@@ -195,9 +208,7 @@ class _TakeComplainState extends State<TakeComplain> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              // Handle the click to add photos from the camera
-                              // You can open the camera or a photo picker here.
-                              // Implement your logic to handle photo capture or selection.
+                              _openCamera(); // Open the camera to take a picture
                             },
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -219,6 +230,25 @@ class _TakeComplainState extends State<TakeComplain> {
                               ),
                             ),
                           ),
+                          if (_image != null)
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                width: double.infinity,
+                                height: 150.0,
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    width: 1.0,
+                                    color: Colors.grey,
+                                  ),
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                                child: Image.file(
+                                  _image!,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
                         ],
                       ),
                     ),
