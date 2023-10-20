@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dashboard/dashboard.dart';
+import 'package:flutter_dashboard/pages/home/home_page.dart';
 import '../pages/addissue.dart';
 
 class Menu extends StatefulWidget {
@@ -21,12 +23,12 @@ class _MenuState extends State<Menu> {
   List<MenuModel> menu = [
     MenuModel(icon: Icons.home, title: "Dashboard"),
     MenuModel(icon: Icons.person, title: "Profile"),
-    MenuModel(icon: Icons.add, title: "Add an Issue"),
+    MenuModel(icon: Icons.add, title: "Issue an Alert"),
     MenuModel(icon: Icons.history, title: "History"),
     MenuModel(icon: Icons.exit_to_app, title: "Signout"),
   ];
 
-  int selected = 0;
+  int selected = -1;
 
   @override
   Widget build(BuildContext context) {
@@ -64,10 +66,17 @@ class _MenuState extends State<Menu> {
                   child: InkWell(
                     onTap: () {
                       if (i == 2) {
+                        selected = i;
                         Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => const AddIssue(),
                         ));
-                      } else {
+                      } 
+                      else if(i == 0) {
+                        selected = i;
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => DashBoard()));
+                      }
+                        else {
                         setState(() {
                           selected = i;
                         });
