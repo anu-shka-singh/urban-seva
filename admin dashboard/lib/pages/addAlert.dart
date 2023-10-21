@@ -1,27 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+import 'package:flutter_dashboard/dbHelper/constant.dart';
 import 'package:intl/intl.dart';
+import 'package:path/path.dart';
+import '../dbHelper/mongodb.dart';
 import '../widgets/menu.dart';
+import '../../dbHelper/datamodels.dart';
 
-class AddIssue extends StatefulWidget {
-  const AddIssue({super.key});
+void main() {
+  runApp(const MaterialApp(
+    home: AddAlert(),
+  ));
+}
+
+class AddAlert extends StatefulWidget {
+  const AddAlert({Key? key}) : super(key: key);
 
   @override
   _AddIssueState createState() => _AddIssueState();
 }
 
-class _AddIssueState extends State<AddIssue> {
-  String selectedCategory = 'Roads Transportation'; // Default category
-  List<String> categories = [
-    'Roads Transportation',
-    'Water Sewer',
-    'Electricity Power',
-    'Sanitation'
-  ];
+class _AddIssueState extends State<AddAlert> {
+  String selectedCategory = 'NDMC'; // Default category
+  List<String> categories = ['NDMC', 'Jal Board', 'BSES', 'SDMC'];
 
   DateTime? selectedDate; // To store the selected date
   DateTime? startTime; // To store the selected start time
   DateTime? endTime; // To store the selected end time
+
+  final TextEditingController detailsController = TextEditingController();
+  final TextEditingController reasonController = TextEditingController();
+  final TextEditingController locationController = TextEditingController();
+  final TextEditingController pincodeController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +63,7 @@ class _AddIssueState extends State<AddIssue> {
 
                   // Category selection dropdown inside a ListTile
                   ListTile(
-                    title: const Text('Alert Type'),
+                    title: const Text('Department'),
                     subtitle: DropdownButton<String>(
                       value: selectedCategory,
                       onChanged: (String? newValue) {
@@ -91,36 +101,68 @@ class _AddIssueState extends State<AddIssue> {
                     },
                   ),
 
-                  // Start Time selection using the DateTimeField
-                  //DateTime? selectedDate = DateTime.now();
-                  //To store the selected date
-                  //DateTime? startTime; // To store the selected start time
-
                   // Rest of your AddIssue content
-                  const TextField(
-                    decoration: InputDecoration(labelText: 'Enter Details'),
+                  TextField(
+                    controller: detailsController,
+                    decoration:
+                        const InputDecoration(labelText: 'Enter Details'),
                   ),
                   const SizedBox(height: 10),
-                  const TextField(
-                    decoration: InputDecoration(labelText: 'Enter Reason'),
+                  TextField(
+                    controller: reasonController,
+                    decoration:
+                        const InputDecoration(labelText: 'Enter Reason'),
                   ),
                   const SizedBox(height: 10),
-                  const TextField(
-                    decoration: InputDecoration(labelText: 'Enter Location'),
+                  TextField(
+                    controller: locationController,
+                    decoration:
+                        const InputDecoration(labelText: 'Enter Location'),
                   ),
                   const SizedBox(height: 10),
-                  const TextField(
+                  TextField(
+                    controller: pincodeController,
                     decoration: InputDecoration(
-                        labelText: 'Enter Pin Code of the Area'),
+                      labelText: 'Enter Pin Code of the Area',
+                    ),
                   ),
                   const SizedBox(height: 40),
                   ElevatedButton(
-                    onPressed: () {
-                      // Handle issue submission here, and you can use 'selectedDate', 'startTime', and 'endTime' for date and time values.
+                    onPressed: () async {
+                      // Create an Issue object with the data from text fields
+                      final alert = Alert(
+                          auth: selectedCategory,
+                          date: selectedDate != null
+                              ? DateFormat("yyyy-MM-dd").format(selectedDate!)
+                              : '',
+                          desc:
+                              '${detailsController.text} due to ${reasonController.text} in ${locationController.text} (${pincodeController.text})',
+                          sTime: startTime.toString(),
+                          eTime: endTime.toString());
+
+                      // Insert the issue into the database
+                      await MongoDatabase.db
+                          .collection(ALERT_COLLECTION)
+                          .insert(alert.toJson());
+
+                      // ignore: use_build_context_synchronously
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) => AlertDialog(
+                          title: const Text('Success'),
+                          content: const Text('Alert Issued'),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () => Navigator.pop(context),
+                              child: const Text('OK'),
+                            ),
+                          ],
+                        ),
+                      );
                     },
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(const Color(
-                          0xFF21222D)), // Change the color to your desired color
+                      backgroundColor:
+                          MaterialStateProperty.all(const Color(0xFF21222D)),
                     ),
                     child: const Text('Submit', style: TextStyle(fontSize: 18)),
                   )
