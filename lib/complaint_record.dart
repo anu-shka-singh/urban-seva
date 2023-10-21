@@ -6,7 +6,8 @@ import 'package:tflite/tflite.dart';
 
 class TakeComplain extends StatefulWidget {
   final String probType;
-  const TakeComplain({super.key, required this.probType});
+  final int index;
+  const TakeComplain({super.key, required this.probType, required this.index});
 
   @override
   State<TakeComplain> createState() => _TakeComplainState();
@@ -15,6 +16,7 @@ class TakeComplain extends StatefulWidget {
 class _TakeComplainState extends State<TakeComplain> {
   File? _image; // Variable to store the taken image
   List _predictions = [];
+  String status = "Not Verified";
 
   @override
   void initState() {
@@ -71,12 +73,29 @@ class _TakeComplainState extends State<TakeComplain> {
     detectimage(_image!);
   }
 
-  List<String> problems = [
-    "Garbage on Street",
-    "Pothole",
-    "Frequent Power Cuts",
-    "Others"
-  ];
+  List<List<String>> problems = [
+  // Electrical
+  ["Frequent Power Outages", "Streetlight Not Working", "Faulty Wiring", "Power Pole Damage", "Others"],
+
+  // Sanitation
+  ["Garbage Dumping in Public Places", "Clogged Sewer Drains", "Overflowing Trash Bins", "Open Defecation Spots", "Others"],
+
+  // Road
+  ["Potholes on Roads", "Damaged Road Signs", "Road Flooding During Rain", "Missing Speed Bumps", "Others"],
+
+  // Stray Animals
+  ["Stray Dog Pack Nuisance", "Stray Cattle on Streets", "Injured Stray Animals", "Wild Animal Sightings", "Others"],
+
+  // Water
+  ["Low Water Pressure", "Water Contamination", "Leaking Water Pipes", "No Access to Clean Water", "Others"],
+
+  // Security
+  ["Street Crime Incidents", "Unlit and Unsafe Areas", "Suspicious Activity Reporting", "Vandalism and Graffiti", "Others"],
+
+  // Others
+  ["Noise Pollution Complaints", "Unattended Abandoned Vehicles", "Public Health Hazards", "Miscellaneous Concerns", "Others"],
+];
+
   String probDesc = "";
   int isUrgent = 0;
 
@@ -164,7 +183,7 @@ class _TakeComplainState extends State<TakeComplain> {
                             ),
                           ),
                           Column(
-                            children: problems.asMap().entries.map((entry) {
+                            children: problems[widget.index].asMap().entries.map((entry) {
                               int index = entry.key;
                               String item = entry.value;
                               return ListTile(
@@ -306,15 +325,56 @@ class _TakeComplainState extends State<TakeComplain> {
                                       ),
                                     ),
                                     SizedBox(height: 4.0),
-                                    Text(
-                                      _predictions[0]['label']
-                                          .toString()
-                                          .substring(2),
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    //Text(_predictions[0]['confidence'].toString()),
+                                    if (_predictions.isNotEmpty &&
+                                        (_predictions[0]['label'][0]
+                                                .toString() ==
+                                            widget.index.toString()))
+                                      const Row(
+                                        children: [
+                                          Icon(
+                                            Icons.check_rounded,
+                                            color: Color.fromARGB(
+                                                255, 40, 117, 42),
+                                            size: 30,
+                                          ),
+                                          Text(
+                                            // _predictions[0]['label']
+                                            //     .toString()
+                                            //     .substring(2),
+                                            "Verified",
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                              color: Color.fromARGB(
+                                                  255, 40, 117, 42),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    if (_predictions.isNotEmpty &&
+                                        (_predictions[0]['label'][0]
+                                                .toString() !=
+                                            widget.index.toString()))
+                                      const Row(
+                                        children: [
+                                          Icon(
+                                            Icons.close_rounded,
+                                            color: Color.fromARGB(255, 173, 24, 44),
+                                            size: 30,
+                                          ),
+                                          Text(
+                                            // _predictions[0]['label']
+                                            //     .toString()
+                                            //     .substring(2),
+                                            "Not Verified",
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                              color: Color.fromARGB(255, 173, 24, 44),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                   ],
                                 ),
                               ),

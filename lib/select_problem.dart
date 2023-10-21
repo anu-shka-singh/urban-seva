@@ -12,10 +12,12 @@ class SelectComplaintTypePage extends StatefulWidget {
 
 class _SelectComplaintTypePageState extends State<SelectComplaintTypePage> {
   String selectedUserType = "";
+  int selectedidx = 0;
 
-  void onUserTypeSelected(String userType) async {
+  void onUserTypeSelected(String userType, int index) async {
     setState(() {
       selectedUserType = userType;
+      selectedidx = index;
     });
   }
 
@@ -26,6 +28,7 @@ class _SelectComplaintTypePageState extends State<SelectComplaintTypePage> {
         MaterialPageRoute(
           builder: (context) => TakeComplain(
             probType: selectedUserType,
+            index: selectedidx,
           ),
         ),
       );
@@ -58,6 +61,7 @@ class _SelectComplaintTypePageState extends State<SelectComplaintTypePage> {
                   child: UserTypeGrid(
                     onUserTypeSelected: onUserTypeSelected,
                     selectedUserType: selectedUserType,
+                    index: selectedidx,
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -94,13 +98,16 @@ class _SelectComplaintTypePageState extends State<SelectComplaintTypePage> {
 }
 
 class UserTypeGrid extends StatelessWidget {
-  final Function(String) onUserTypeSelected;
+  final Function(String, int) onUserTypeSelected;
   final String selectedUserType;
+  final int index;
 
   const UserTypeGrid(
       {super.key,
       required this.onUserTypeSelected,
-      required this.selectedUserType});
+      required this.selectedUserType,
+      required this.index,
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -119,6 +126,7 @@ class UserTypeGrid extends StatelessWidget {
           isSelected: selectedUserType == "Electrical",
           textColor: Colors.pink,
           colorTile: const Color.fromARGB(209, 255, 230, 238),
+          index: 0,
         ),
         ProbTypeTile(
           key: const ValueKey<String>("Sanitation"),
@@ -128,15 +136,17 @@ class UserTypeGrid extends StatelessWidget {
           isSelected: selectedUserType == "Sanitation",
           textColor: const Color.fromARGB(255, 33, 82, 165),
           colorTile: const Color.fromARGB(210, 227, 243, 255),
+          index: 1,
         ),
         ProbTypeTile(
-          key: const ValueKey<String>("Security"),
+          key: const ValueKey<String>("Road"),
           icon: Icons.security,
-          text: "Security",
+          text: "Road",
           onUserTypeSelected: onUserTypeSelected,
-          isSelected: selectedUserType == "Security",
+          isSelected: selectedUserType == "Road",
           textColor: const Color.fromARGB(255, 20, 114, 56),
           colorTile: const Color.fromARGB(214, 224, 251, 233),
+          index: 2,
         ),
         ProbTypeTile(
           key: const ValueKey<String>("Stray Animals"),
@@ -146,24 +156,27 @@ class UserTypeGrid extends StatelessWidget {
           isSelected: selectedUserType == "Stray Animals",
           textColor: Colors.orange,
           colorTile: const Color.fromARGB(216, 254, 240, 218),
-        ),
-        ProbTypeTile(
-          key: const ValueKey<String>("Road"),
-          icon: Icons.add_road,
-          text: "Road",
-          onUserTypeSelected: onUserTypeSelected,
-          isSelected: selectedUserType == "Road",
-          textColor: const Color.fromARGB(255, 143, 119, 25),
-          colorTile: const Color.fromARGB(221, 253, 246, 216),
+          index: 3,
         ),
         ProbTypeTile(
           key: const ValueKey<String>("Water"),
-          icon: Icons.gps_fixed,
+          icon: Icons.add_road,
           text: "Water",
           onUserTypeSelected: onUserTypeSelected,
           isSelected: selectedUserType == "Water",
+          textColor: const Color.fromARGB(255, 143, 119, 25),
+          colorTile: const Color.fromARGB(221, 253, 246, 216),
+          index: 4,
+        ),
+        ProbTypeTile(
+          key: const ValueKey<String>("Security"),
+          icon: Icons.gps_fixed,
+          text: "Security",
+          onUserTypeSelected: onUserTypeSelected,
+          isSelected: selectedUserType == "Security",
           textColor: const Color.fromARGB(255, 13, 108, 107),
           colorTile: const Color.fromARGB(219, 219, 254, 254),
+          index: 5,
         ),
         ProbTypeTile(
           key: const ValueKey<String>("Others"),
@@ -173,6 +186,7 @@ class UserTypeGrid extends StatelessWidget {
           isSelected: selectedUserType == "Others",
           textColor: Colors.deepPurple,
           colorTile: const Color.fromARGB(217, 234, 223, 250),
+          index: 6,
         ),
       ],
     );
@@ -183,10 +197,11 @@ class UserTypeGrid extends StatelessWidget {
 class ProbTypeTile extends StatelessWidget {
   final IconData icon;
   final String text;
-  final Function(String) onUserTypeSelected;
+  final Function(String, int) onUserTypeSelected;
   final bool isSelected;
   Color colorTile;
   Color textColor;
+  final int index;
 
   ProbTypeTile({
     required Key key,
@@ -196,6 +211,7 @@ class ProbTypeTile extends StatelessWidget {
     required this.isSelected,
     required this.colorTile,
     required this.textColor,
+    required this.index,
   }) : super(key: key);
 
   @override
@@ -211,7 +227,7 @@ class ProbTypeTile extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () {
-          onUserTypeSelected(text);
+          onUserTypeSelected(text, index);
         },
         child: Padding(
           padding: const EdgeInsets.all(15),
