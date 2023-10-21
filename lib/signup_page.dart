@@ -121,7 +121,6 @@ class _SignUpState extends State<SignUp> {
                       await MongoDatabase.db
                           .collection(USER_COLLECTION)
                           .insert(data.toJson());
-                      print(data);
                       showDialog(
                         context: context,
                         builder: (BuildContext context) => AlertDialog(

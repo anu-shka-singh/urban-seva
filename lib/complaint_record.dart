@@ -74,27 +74,69 @@ class _TakeComplainState extends State<TakeComplain> {
   }
 
   List<List<String>> problems = [
-  // Electrical
-  ["Frequent Power Outages", "Streetlight Not Working", "Faulty Wiring", "Power Pole Damage", "Others"],
+    // Electrical
+    [
+      "Frequent Power Outages",
+      "Streetlight Not Working",
+      "Faulty Wiring",
+      "Power Pole Damage",
+      "Others"
+    ],
 
-  // Sanitation
-  ["Garbage Dumping in Public Places", "Clogged Sewer Drains", "Overflowing Trash Bins", "Open Defecation Spots", "Others"],
+    // Sanitation
+    [
+      "Garbage Dumping in Public Places",
+      "Clogged Sewer Drains",
+      "Overflowing Trash Bins",
+      "Open Defecation Spots",
+      "Others"
+    ],
 
-  // Road
-  ["Potholes on Roads", "Damaged Road Signs", "Road Flooding During Rain", "Missing Speed Bumps", "Others"],
+    // Road
+    [
+      "Potholes on Roads",
+      "Damaged Road Signs",
+      "Road Flooding During Rain",
+      "Missing Speed Bumps",
+      "Others"
+    ],
 
-  // Stray Animals
-  ["Stray Dog Pack Nuisance", "Stray Cattle on Streets", "Injured Stray Animals", "Wild Animal Sightings", "Others"],
+    // Stray Animals
+    [
+      "Stray Dog Pack Nuisance",
+      "Stray Cattle on Streets",
+      "Injured Stray Animals",
+      "Wild Animal Sightings",
+      "Others"
+    ],
 
-  // Water
-  ["Low Water Pressure", "Water Contamination", "Leaking Water Pipes", "No Access to Clean Water", "Others"],
+    // Water
+    [
+      "Low Water Pressure",
+      "Water Contamination",
+      "Leaking Water Pipes",
+      "No Access to Clean Water",
+      "Others"
+    ],
 
-  // Security
-  ["Street Crime Incidents", "Unlit and Unsafe Areas", "Suspicious Activity Reporting", "Vandalism and Graffiti", "Others"],
+    // Security
+    [
+      "Street Crime Incidents",
+      "Unlit and Unsafe Areas",
+      "Suspicious Activity Reporting",
+      "Vandalism and Graffiti",
+      "Others"
+    ],
 
-  // Others
-  ["Noise Pollution Complaints", "Unattended Abandoned Vehicles", "Public Health Hazards", "Miscellaneous Concerns", "Others"],
-];
+    // Others
+    [
+      "Noise Pollution Complaints",
+      "Unattended Abandoned Vehicles",
+      "Public Health Hazards",
+      "Miscellaneous Concerns",
+      "Others"
+    ],
+  ];
 
   String probDesc = "";
   int isUrgent = 0;
@@ -183,7 +225,10 @@ class _TakeComplainState extends State<TakeComplain> {
                             ),
                           ),
                           Column(
-                            children: problems[widget.index].asMap().entries.map((entry) {
+                            children: problems[widget.index]
+                                .asMap()
+                                .entries
+                                .map((entry) {
                               int index = entry.key;
                               String item = entry.value;
                               return ListTile(
@@ -324,7 +369,7 @@ class _TakeComplainState extends State<TakeComplain> {
                                         fit: BoxFit.cover,
                                       ),
                                     ),
-                                    SizedBox(height: 4.0),
+                                    const SizedBox(height: 4.0),
                                     if (_predictions.isNotEmpty &&
                                         (_predictions[0]['label'][0]
                                                 .toString() ==
@@ -359,7 +404,8 @@ class _TakeComplainState extends State<TakeComplain> {
                                         children: [
                                           Icon(
                                             Icons.close_rounded,
-                                            color: Color.fromARGB(255, 173, 24, 44),
+                                            color: Color.fromARGB(
+                                                255, 173, 24, 44),
                                             size: 30,
                                           ),
                                           Text(
@@ -370,7 +416,8 @@ class _TakeComplainState extends State<TakeComplain> {
                                             style: TextStyle(
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold,
-                                              color: Color.fromARGB(255, 173, 24, 44),
+                                              color: Color.fromARGB(
+                                                  255, 173, 24, 44),
                                             ),
                                           ),
                                         ],

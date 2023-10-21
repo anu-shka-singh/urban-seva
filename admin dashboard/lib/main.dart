@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dashboard/const.dart';
 import 'package:flutter_dashboard/pages/home/splash.dart';
-import 'package:flutter_dashboard/pages/login.dart';
 
 void main() {
   runApp(const MyApp());

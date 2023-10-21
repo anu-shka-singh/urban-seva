@@ -25,7 +25,7 @@ class _MyHomePageState extends State<MyHomePage> {
     await MongoDatabase.connect();
     // ignore: use_build_context_synchronously
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => const LoginPage()));
+        context, MaterialPageRoute(builder: (context) => LoginPage()));
   }
 
   @override
@@ -35,7 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('images/logo.png'),
+              image: AssetImage('assets/images/logo.png'),
               //fit: BoxFit.cover,
             ),
           ),

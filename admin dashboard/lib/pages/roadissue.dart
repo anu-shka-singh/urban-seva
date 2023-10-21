@@ -4,6 +4,8 @@ import '../widgets/menu.dart';
 import 'issue_tracker.dart';
 
 class RoadTransportationPage extends StatefulWidget {
+  const RoadTransportationPage({super.key});
+
   @override
   _RoadTransportationPageState createState() => _RoadTransportationPageState();
 }
@@ -56,8 +58,8 @@ class _RoadTransportationPageState extends State<RoadTransportationPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(30.0),
+                const Padding(
+                  padding: EdgeInsets.all(30.0),
                   child: Text(
                     "Roads and Transportation Issues",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 50),
@@ -97,13 +99,13 @@ class _RoadTransportationPageState extends State<RoadTransportationPage> {
                         }
                         return Card(
                           elevation: 4, // Add elevation
-                          margin:
-                              EdgeInsets.all(10), // Add padding to each Card
+                          margin: const EdgeInsets.all(
+                              10), // Add padding to each Card
                           child: ListTile(
                             title: Text(issue['name']!),
                             subtitle: Text(
                                 'Area: ${issue['area']}, Date: ${issue['date']}'),
-                            trailing: Icon(Icons.arrow_forward),
+                            trailing: const Icon(Icons.arrow_forward),
                             onTap: () => Navigator.push(
                               context,
                               MaterialPageRoute(

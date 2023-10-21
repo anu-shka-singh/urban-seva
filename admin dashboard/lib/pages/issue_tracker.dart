@@ -2,20 +2,9 @@ import 'package:flutter/material.dart';
 import '../widgets/menu.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-// import 'home/widgets/api.dart';
-// import 'package:http/http.dart' as http;
-// import 'dart:convert';
-
-// void main() {
-//   runApp(
-//     const MaterialApp(
-//       home: IssueTracker(),
-//     ),
-//   );
-// }
 
 class IssueTracker extends StatefulWidget {
-  const IssueTracker({super.key});
+  const IssueTracker({Key? key}) : super(key: key);
 
   @override
   State<IssueTracker> createState() => _IssueTrackerState();
@@ -25,7 +14,7 @@ class _IssueTrackerState extends State<IssueTracker> {
   List listOfPoints = [];
   List<LatLng> points = [];
 
-  List<bool> completedTasks = [false, false, false, false, false];
+  List<bool> completedTasks = [true, true, false, false, false];
   List<String> tasks = [
     'Issue Registered',
     'Forwarded to Authorities',
@@ -47,21 +36,6 @@ class _IssueTrackerState extends State<IssueTracker> {
       completedTasks[index] = !completedTasks[index];
     });
   }
-
-  // getCoordinates() async {
-  //   // Requesting for openrouteservice api
-  //   var response = await http.get(getRouteUrl(
-  //       "1.243344,6.145332", '1.2160116523406839,6.125231015668568'));
-  //   setState(() {
-  //     if (response.statusCode == 200) {
-  //       var data = jsonDecode(response.body);
-  //       listOfPoints = data['features'][0]['geometry']['coordinates'];
-  //       points = listOfPoints
-  //           .map((p) => LatLng(p[1].toDouble(), p[0].toDouble()))
-  //           .toList();
-  //     }
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +64,7 @@ class _IssueTrackerState extends State<IssueTracker> {
                             "Pothole Issue",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize:35,
+                              fontSize: 35,
                             ),
                           ),
                           Text(
@@ -104,11 +78,11 @@ class _IssueTrackerState extends State<IssueTracker> {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
+                    const Padding(
+                      padding: EdgeInsets.all(10.0),
                       child: Text(
                         "A whole stretch of 1KM road is covered with potholes in subhash nagar block J making it difficult for people with two wheelers to commute.",
                         style: TextStyle(
@@ -118,10 +92,10 @@ class _IssueTrackerState extends State<IssueTracker> {
                         textAlign: TextAlign.left,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         ProfileCard(
@@ -140,7 +114,7 @@ class _IssueTrackerState extends State<IssueTracker> {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Row(
@@ -150,8 +124,8 @@ class _IssueTrackerState extends State<IssueTracker> {
                           elevation: 6,
                           child: Column(
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.all(5.0),
+                              const Padding(
+                                padding: EdgeInsets.all(5.0),
                                 child: Text(
                                   "View Location",
                                   style: TextStyle(
@@ -210,12 +184,12 @@ class _IssueTrackerState extends State<IssueTracker> {
                             ],
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 20,
                         ),
                         Card(
                           elevation: 6,
-                          margin: EdgeInsets.all(10),
+                          margin: const EdgeInsets.all(10),
                           child: SizedBox(
                             width: 400,
                             child: Padding(
@@ -280,7 +254,8 @@ class _IssueTrackerState extends State<IssueTracker> {
                                                 left: 16.0,
                                               ),
                                               child: Padding(
-                                                padding: EdgeInsets.all(12),
+                                                padding:
+                                                    const EdgeInsets.all(12),
                                                 child: Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment
@@ -317,7 +292,7 @@ class _IssueTrackerState extends State<IssueTracker> {
                                                         ),
                                                       ],
                                                     ),
-                                                    SizedBox(
+                                                    const SizedBox(
                                                       width: 10,
                                                     ),
                                                     Checkbox(
@@ -343,7 +318,7 @@ class _IssueTrackerState extends State<IssueTracker> {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Padding(
@@ -352,10 +327,10 @@ class _IssueTrackerState extends State<IssueTracker> {
                       child: Card(
                         elevation: 6,
                         child: Padding(
-                          padding: EdgeInsets.all(10.0),
+                          padding: const EdgeInsets.all(10.0),
                           child: Column(
                             children: [
-                              Text(
+                              const Text(
                                 "Attached Images",
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
@@ -374,7 +349,8 @@ class _IssueTrackerState extends State<IssueTracker> {
                                         left: 20, right: 20),
                                     child: Card(
                                         shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(10),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
                                         ),
                                         child: Container(
                                           child: Image.asset(
@@ -382,9 +358,7 @@ class _IssueTrackerState extends State<IssueTracker> {
                                             width: 400,
                                             height: 200,
                                           ),
-                                        )
-
-                                    ),
+                                        )),
                                   ),
                                   Card(
                                       shape: RoundedRectangleBorder(
@@ -396,10 +370,7 @@ class _IssueTrackerState extends State<IssueTracker> {
                                           width: 400,
                                           height: 200,
                                         ),
-                                      )
-
-                                  ),
-
+                                      )),
                                 ],
                               ),
                             ],
@@ -425,7 +396,8 @@ class ProfileCard extends StatelessWidget {
   final String email;
   final String phno;
 
-  ProfileCard({
+  const ProfileCard({
+    super.key,
     required this.profileName,
     required this.imgpath,
     required this.name,
@@ -438,12 +410,12 @@ class ProfileCard extends StatelessWidget {
     return Center(
       child: Card(
         elevation: 6,
-        child: Container(
+        child: SizedBox(
           width: 500,
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.only(
+                padding: const EdgeInsets.only(
                   top: 20.0,
                   bottom: 5,
                   left: 30,
@@ -451,14 +423,15 @@ class ProfileCard extends StatelessWidget {
                 ),
                 child: Text(
                   profileName,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
               Divider(
-                color: Colors.black.withOpacity(0.3), // Set the color of the line
+                color:
+                    Colors.black.withOpacity(0.3), // Set the color of the line
                 thickness: 1, // Set the thickness of the line
               ),
               Padding(
@@ -471,7 +444,7 @@ class ProfileCard extends StatelessWidget {
                           imgpath), // Replace with the actual image path
                       radius: 25,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     Column(
@@ -479,17 +452,17 @@ class ProfileCard extends StatelessWidget {
                       children: [
                         Text(
                           name,
-                          style: TextStyle(
-                            fontSize:16,
+                          style: const TextStyle(
+                            fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Text(
                           email,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.bold,
                             color: Colors.grey,
@@ -497,7 +470,7 @@ class ProfileCard extends StatelessWidget {
                         ),
                         Text(
                           phno,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.bold,
                             color: Colors.grey,

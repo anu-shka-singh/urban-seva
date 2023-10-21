@@ -2,10 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dashboard/dashboard.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  LoginPage({super.key});
+
+  // Define a map of credentials (username and password)
+  final Map<String, String> credentials = {
+    'gov7856': '123456',
+    'mcd1234': '987654',
+  };
 
   @override
   Widget build(BuildContext context) {
+    String username = '';
+    String password = '';
+
     return Scaffold(
       backgroundColor: const Color(0xFF21222D),
       body: Center(
@@ -30,54 +39,69 @@ class LoginPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                // Replace the "Login" heading with an image
                 Image.asset(
-                  'urban.png', // Replace with the path to your image
-                  width: 350, // Adjust the width as needed
-                  height: 100, // Adjust the height as needed
+                  'urban.png',
+                  width: 350,
+                  height: 100,
                 ),
-                const SizedBox(
-                  height: 50,
-                ),
-                // Username field
-                const TextField(
-                  decoration: InputDecoration(
+                const SizedBox(height: 50),
+                TextField(
+                  decoration: const InputDecoration(
                     labelText: 'Username',
                   ),
+                  onChanged: (value) {
+                    username = value;
+                  },
                 ),
                 const SizedBox(height: 20),
-
-                // Password field
-                const TextField(
-                  decoration: InputDecoration(
+                TextField(
+                  decoration: const InputDecoration(
                     labelText: 'Password',
                   ),
                   obscureText: true,
+                  onChanged: (value) {
+                    password = value;
+                  },
                 ),
                 const SizedBox(height: 20),
-
-                // Login button
                 ElevatedButton(
                   onPressed: () {
-                    // Navigate to the Home Page when the login button is pressed
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => DashBoard()),
-                    );
+                    // Check if the entered credentials are valid
+                    if (credentials.containsKey(username) &&
+                        credentials[username] == password) {
+                      // Navigate to the Home Page if credentials are valid
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => DashBoard()),
+                      );
+                    } else {
+                      // Show an invalid credentials dialog box
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) => AlertDialog(
+                          title: const Text('Invalid Credentials'),
+                          content: const Text(
+                              'Please check the username and password.'),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () => Navigator.pop(context),
+                              child: const Text('OK'),
+                            ),
+                          ],
+                        ),
+                      );
+                    }
                   },
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(
-                        const Color(0xFF21222D)), // Change the button color
-                    minimumSize: MaterialStateProperty.all(
-                        const Size(150, 50)), // Change the button size
+                    backgroundColor:
+                        MaterialStateProperty.all(const Color(0xFF21222D)),
+                    minimumSize: MaterialStateProperty.all(const Size(150, 50)),
                   ),
                   child: const Text(
                     'Login',
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white), // Change the text style
+                    style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
-                )
+                ),
               ],
             ),
           ),
