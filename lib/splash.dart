@@ -34,6 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
       children: [
         Center(
           child: Container(
+
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('images/logo.png'),

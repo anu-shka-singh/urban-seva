@@ -4,6 +4,7 @@ import 'package:complaint_app/map_page.dart';
 import 'package:complaint_app/select_problem.dart';
 import 'package:complaint_app/signin_page.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'chatbot_screen.dart';
 
 class Dashboard extends StatefulWidget {
@@ -15,7 +16,77 @@ class Dashboard extends StatefulWidget {
   DashboardState createState() => DashboardState();
 }
 
+// Future<Position> _getCurrentLocation() async {
+//   bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+//   if(!serviceEnabled){
+//     return Future.error('Location service is OFF');
+//   }
+//   LocationPermission permission = await Geolocator.checkPermission();
+//   if(permission == LocationPermission.denied){
+//     permission = await Geolocator.requestPermission();
+//
+//     if(permission == LocationPermission.denied){
+//         return Future.error('Location permission is denied');
+//     }
+//   }
+//
+//   if(permission == LocationPermission.deniedForever){
+//     return Future.error('Location permission is permanently denied');
+//   }
+//
+//   return await Geolocator.getCurrentPosition();
+// }
+
 class DashboardState extends State<Dashboard> {
+
+  Position? currentLocation;
+
+  @override
+  void initState() {
+    super.initState();
+    _getCurrentLocation().then((position) {
+      setState(() {
+        currentLocation = position;
+      });
+      _livelocation();
+    }).catchError((error) {
+      print(error); // Handle location errors here
+    });
+  }
+
+  void _livelocation(){
+    LocationSettings locationSettings = const LocationSettings(
+      accuracy: LocationAccuracy.high,
+      distanceFilter: 100,
+    );
+
+    Geolocator.getPositionStream(locationSettings: locationSettings).listen((Position position){
+      setState(() {
+        currentLocation = position;
+      });
+    });
+  }
+  Future<Position> _getCurrentLocation() async {
+    bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      throw 'Location service is OFF';
+    }
+    LocationPermission permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+
+      if (permission == LocationPermission.denied) {
+        throw 'Location permission is denied';
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      throw 'Location permission is permanently denied';
+    }
+
+    return await Geolocator.getCurrentPosition();
+  }
+
   List<bool> completedTasks = [true, false, false, false, false];
   final List<Color> taskColors = [
     const Color.fromARGB(255, 255, 255, 255),
@@ -33,8 +104,8 @@ class DashboardState extends State<Dashboard> {
 
   List<String> sub = [
     'A Block, Street 14, Janakpuri West',
-    'Maharaja Roaj, Uttam Nagar',
-    'K Block, Street 10, Jankapuri East',
+    'Maharaja Roaj, Tilak Nagar',
+    '3 Block, Street 10, Tagore Garden',
   ];
 
   void _onTaskCompleted(int index) {
@@ -132,7 +203,7 @@ class DashboardState extends State<Dashboard> {
                     ),
                   ),
                   Text(
-                    widget.user['address'],
+                    'Latitude: ${currentLocation?.latitude}\nLongitude: ${currentLocation?.longitude}',
                     style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -186,7 +257,11 @@ class DashboardState extends State<Dashboard> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const MapScreen()),
+                                  builder: (context) => MapScreen(
+                                    // Pass the coordinates to MapScreen
+                                    initialLatitude: currentLocation?.latitude,
+                                    initialLongitude: currentLocation?.longitude,
+                                  ),),
                             );
                           },
                         ),

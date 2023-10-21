@@ -6,15 +6,20 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class MapScreen extends StatefulWidget {
-  const MapScreen({super.key});
+  final double? initialLatitude; // Define initialLatitude and initialLongitude
+  final double? initialLongitude;
+
+  const MapScreen({Key? key, this.initialLatitude, this.initialLongitude})
+      : super(key: key);
 
   @override
   State<MapScreen> createState() => _MapScreenState();
 }
 
-void main() {
-  runApp(const MaterialApp(home: MapScreen()));
-}
+//
+// void main() {
+//   runApp(const MaterialApp(home: MapScreen()));
+// }
 
 class _MapScreenState extends State<MapScreen> {
   // Raw coordinates got from  OpenRouteService
@@ -47,8 +52,11 @@ class _MapScreenState extends State<MapScreen> {
         backgroundColor: const Color(0xFF21222D),
       ),
       body: FlutterMap(
-        options: const MapOptions(
-            initialZoom: 13, initialCenter: LatLng(28.6465, 77.1169)),
+        options: MapOptions(
+            initialZoom: 13, initialCenter: LatLng(
+          widget.initialLatitude ?? 0.0, // Use the provided coordinates
+          widget.initialLongitude ?? 0.0,
+        ),),
         children: [
           // Layer that adds the map
           TileLayer(
