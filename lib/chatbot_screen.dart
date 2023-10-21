@@ -3,17 +3,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import 'community_page.dart';
-import 'user_dashboard.dart';
-
-void main() {
-  runApp(const MaterialApp(
-    home: ChatBotScreen(),
-  ));
-}
-
 class ChatBotScreen extends StatefulWidget {
-  const ChatBotScreen({super.key});
+  ChatBotScreen({super.key, required this.user});
+  String user;
 
   @override
   _ChatBotScreenState createState() => _ChatBotScreenState();
@@ -102,27 +94,27 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
     );
   }
 
-  void _onItemTapped(int index) {
-    if (index == 0) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => Dashboard(
-                  user: const {'name': 'Diya', 'address': 'Laxmi Nagar, Delhi'},
-                )),
-      );
-    } else if (index == 1) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const Communities()),
-      );
-    } else if (index == 2) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const ChatBotScreen()),
-      );
-    }
-  }
+  // void _onItemTapped(int index) {
+  //   if (index == 0) {
+  //     Navigator.push(
+  //       context,
+  //       MaterialPageRoute(
+  //           builder: (context) => Dashboard(
+  //                 user: '',
+  //               )),
+  //     );
+  //   } else if (index == 1) {
+  //     Navigator.push(
+  //       context,
+  //       MaterialPageRoute(builder: (context) => const Communities()),
+  //     );
+  //   } else if (index == 2) {
+  //     Navigator.push(
+  //       context,
+  //       MaterialPageRoute(builder: (context) => const ChatBotScreen()),
+  //     );
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {

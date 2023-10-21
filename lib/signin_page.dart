@@ -1,10 +1,11 @@
 // ignore_for_file: use_build_context_synchronously
 
-// import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'dbHelper/constant.dart';
+import 'dbHelper/mongodb.dart';
 import 'user_dashboard.dart';
 import 'signup_page.dart';
+import 'package:mongo_dart/mongo_dart.dart' as mongo_dart;
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -20,25 +21,7 @@ void main() {
 class _LoginState extends State<LoginPage> {
   final TextEditingController _passwordTextController = TextEditingController();
   final TextEditingController _emailTextController = TextEditingController();
-
-  // Future<Map<String, dynamic>> fetchData() async {
-  //   try {
-  //     QuerySnapshot<Map<String, dynamic>> querySnapshot =
-  //         await FirebaseFirestore.instance
-  //             .collection('userProfiles')
-  //             .where('email', isEqualTo: _emailTextController.text)
-  //             .get();
-
-  //     if (querySnapshot.docs.isNotEmpty) {
-  //       return querySnapshot.docs[0].data();
-  //     } else {
-  //       print('No user data found');
-  //     }
-  //   } catch (e) {
-  //     print('Error fetching user data: $e');
-  //   }
-  //   return <String, dynamic>{};
-  // }
+  var userData;
 
   @override
   Widget build(BuildContext context) {
@@ -94,22 +77,60 @@ class _LoginState extends State<LoginPage> {
                 ),
                 signInSignUpButton(context, true, () async {
                   try {
-                    // await FirebaseAuth.instance.signInWithEmailAndPassword(
-                    //   email: _emailTextController.text,
-                    //   password: _passwordTextController.text,
-                    // );
-                    // final data = await fetchData();
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Dashboard(
-                          user: const {
-                            'name': 'Diya',
-                            'address': 'Laxmi Nagar, Delhi'
-                          },
+                    bool userExists =
+                        await doesUserExists(_emailTextController.text);
+                    if (userExists) {
+                      String userEmail = _emailTextController.text;
+                      while (userData['pswd'] != _passwordTextController.text) {
+                        await showDialog(
+                          context: context,
+                          builder: (BuildContext context) => AlertDialog(
+                            title: const Text("Try Again"),
+                            content: const Text('Incorrect Password'),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const LoginPage()),
+                                  );
+                                  _emailTextController.text = userEmail;
+                                },
+                                child: const Text('OK'),
+                              ),
+                            ],
+                          ),
+                        );
+                      }
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Dashboard(
+                            user: userData['name'],
+                          ),
                         ),
-                      ),
-                    );
+                      );
+                    } else {
+                      await showDialog(
+                        context: context,
+                        builder: (BuildContext context) => AlertDialog(
+                          title: const Text("User Doesn't Exist"),
+                          content: const Text('Sign Up to continue'),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const SignUp()),
+                              ),
+                              child: const Text('OK'),
+                            ),
+                          ],
+                        ),
+                      );
+                    }
                   }
                   //on FirebaseAuthException
                   catch (error) {
@@ -180,5 +201,21 @@ class _LoginState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  Future<bool> doesUserExists(String email) async {
+    try {
+      // Check if the email is already registered
+      final userCollection = MongoDatabase.db.collection(USER_COLLECTION);
+      userData = await userCollection.findOne(
+        mongo_dart.where.eq('email', email),
+      );
+
+      // If methods is not empty, a user with this email exists
+      return userData.isNotEmpty;
+    } catch (e) {
+      // Handle any errors
+      return false;
+    }
   }
 }

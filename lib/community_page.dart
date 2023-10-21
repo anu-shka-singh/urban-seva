@@ -3,16 +3,9 @@ import 'package:flutter/material.dart';
 import 'chatbot_screen.dart';
 import 'user_dashboard.dart';
 
-void main() {
-  runApp(
-    const MaterialApp(
-      home: Communities(),
-    ),
-  );
-}
-
 class Communities extends StatefulWidget {
-  const Communities({super.key});
+  Communities({super.key, required this.user});
+  String user;
 
   @override
   State<Communities> createState() => CommunitiesState();
@@ -49,18 +42,22 @@ class CommunitiesState extends State<Communities> {
         context,
         MaterialPageRoute(
             builder: (context) => Dashboard(
-                  user: const {'name': 'Diya', 'address': 'Laxmi Nagar, Delhi'},
+                  user: '',
                 )),
       );
     } else if (index == 1) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const Communities()),
+        MaterialPageRoute(
+            builder: (context) => Communities(
+                  user: widget.user,
+                )),
       );
     } else if (index == 2) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const ChatBotScreen()),
+        MaterialPageRoute(
+            builder: (context) => ChatBotScreen(user: widget.user)),
       );
     }
   }

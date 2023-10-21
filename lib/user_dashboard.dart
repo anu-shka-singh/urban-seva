@@ -10,7 +10,7 @@ import 'chatbot_screen.dart';
 class Dashboard extends StatefulWidget {
   Color clr = Colors.grey;
   Color clr2 = Colors.grey;
-  Map<String, dynamic> user;
+  String user;
   Dashboard({super.key, required this.user});
   @override
   DashboardState createState() => DashboardState();
@@ -38,7 +38,6 @@ class Dashboard extends StatefulWidget {
 // }
 
 class DashboardState extends State<Dashboard> {
-
   Position? currentLocation;
 
   @override
@@ -54,18 +53,20 @@ class DashboardState extends State<Dashboard> {
     });
   }
 
-  void _livelocation(){
+  void _livelocation() {
     LocationSettings locationSettings = const LocationSettings(
       accuracy: LocationAccuracy.high,
       distanceFilter: 100,
     );
 
-    Geolocator.getPositionStream(locationSettings: locationSettings).listen((Position position){
+    Geolocator.getPositionStream(locationSettings: locationSettings)
+        .listen((Position position) {
       setState(() {
         currentLocation = position;
       });
     });
   }
+
   Future<Position> _getCurrentLocation() async {
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
@@ -126,12 +127,15 @@ class DashboardState extends State<Dashboard> {
     } else if (index == 1) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const Communities()),
+        MaterialPageRoute(builder: (context) => Communities(user: widget.user)),
       );
     } else if (index == 2) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const ChatBotScreen()),
+        MaterialPageRoute(
+            builder: (context) => ChatBotScreen(
+                  user: widget.user,
+                )),
       );
     }
   }
@@ -195,7 +199,7 @@ class DashboardState extends State<Dashboard> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget.user['name'],
+                    widget.user,
                     style: const TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
@@ -257,11 +261,12 @@ class DashboardState extends State<Dashboard> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => MapScreen(
-                                    // Pass the coordinates to MapScreen
-                                    initialLatitude: currentLocation?.latitude,
-                                    initialLongitude: currentLocation?.longitude,
-                                  ),),
+                                builder: (context) => MapScreen(
+                                  // Pass the coordinates to MapScreen
+                                  initialLatitude: currentLocation?.latitude,
+                                  initialLongitude: currentLocation?.longitude,
+                                ),
+                              ),
                             );
                           },
                         ),

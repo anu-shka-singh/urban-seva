@@ -1,8 +1,11 @@
 // ignore_for_file: use_build_context_synchronously
 
-//import 'package:firebase_auth/firebase_auth.dart';
+import 'package:complaint_app/dbHelper/constant.dart';
+import 'package:complaint_app/dbHelper/datamodels.dart';
 import 'package:complaint_app/user_dashboard.dart';
 import 'package:flutter/material.dart';
+import 'package:mongo_dart/mongo_dart.dart' as mongo_dart;
+import 'dbHelper/mongodb.dart';
 import 'signin_page.dart';
 
 class SignUp extends StatefulWidget {
@@ -15,6 +18,7 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   final TextEditingController _passwordTextController = TextEditingController();
   final TextEditingController _emailTextController = TextEditingController();
+  final TextEditingController _nameTextController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +53,18 @@ class _SignUpState extends State<SignUp> {
                 // Use InputDecoration for text fields
                 TextFormField(
                   decoration: const InputDecoration(
+                    labelText: "Enter Name",
+                    icon: Icon(Icons.person),
+                    border: OutlineInputBorder(),
+                  ),
+                  // Use controller property to bind the controller
+                  controller: _nameTextController,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                TextFormField(
+                  decoration: const InputDecoration(
                     labelText: "Enter Email",
                     icon: Icon(Icons.email),
                     border: OutlineInputBorder(),
@@ -73,6 +89,7 @@ class _SignUpState extends State<SignUp> {
                 const SizedBox(
                   height: 20,
                 ),
+
                 // Use a custom button widget for reusability
                 signInSignUpButton(context, false, () async {
                   final userExists =
@@ -81,12 +98,15 @@ class _SignUpState extends State<SignUp> {
                     showDialog(
                       context: context,
                       builder: (BuildContext context) => AlertDialog(
-                        title: const Text('User Exists'),
+                        title: const Text('User Already Exists'),
                         content:
                             const Text('This email is already registered.'),
                         actions: <Widget>[
                           TextButton(
-                            onPressed: () => Navigator.pop(context),
+                            onPressed: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const LoginPage())),
                             child: const Text('OK'),
                           ),
                         ],
@@ -94,10 +114,14 @@ class _SignUpState extends State<SignUp> {
                     );
                   } else {
                     try {
-                      // await FirebaseAuth.instance
-                      //     .createUserWithEmailAndPassword(
-                      //         email: _emailTextController.text,
-                      //         password: _passwordTextController.text);
+                      final data = User(
+                          email: _emailTextController.text,
+                          pswd: _passwordTextController.text,
+                          name: _nameTextController.text);
+                      await MongoDatabase.db
+                          .collection(USER_COLLECTION)
+                          .insert(data.toJson());
+                      print(data);
                       showDialog(
                         context: context,
                         builder: (BuildContext context) => AlertDialog(
@@ -109,10 +133,7 @@ class _SignUpState extends State<SignUp> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => Dashboard(
-                                            user: const {
-                                              'name': 'Diya',
-                                              'address': 'Laxmi Nagar, Delhi'
-                                            })),
+                                        user: _nameTextController.text)),
                               ),
                               child: const Text('OK'),
                             ),
@@ -126,8 +147,7 @@ class _SignUpState extends State<SignUp> {
                         context: context,
                         builder: (BuildContext context) => AlertDialog(
                           title: const Text('Error'),
-                          content:
-                              Text("Error ${error.toString().split(']')[1]}"),
+                          content: Text("Error ${error.toString()}"),
                           actions: <Widget>[
                             TextButton(
                               onPressed: () => Navigator.pop(context),
@@ -175,11 +195,12 @@ class _SignUpState extends State<SignUp> {
   Future<bool> doesUserExist(String email) async {
     try {
       // Check if the email is already registered
-      var methods = "";
-      //await FirebaseAuth.instance.fetchSignInMethodsForEmail(email);
-
+      final userCollection = MongoDatabase.db.collection(USER_COLLECTION);
+      var userData = await userCollection.find(
+        mongo_dart.where.eq('email', email),
+      );
       // If methods is not empty, a user with this email exists
-      return methods.isNotEmpty;
+      return userData.isNotEmpty;
     } catch (e) {
       // Handle any errors
       return false;

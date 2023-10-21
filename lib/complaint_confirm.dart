@@ -82,12 +82,7 @@ class _ComplaintConfirmationState extends State<ComplaintConfirmation> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Dashboard(
-                          user: const {
-                            'name': 'Diya',
-                            'address': 'Laxmi Nagar, Delhi'
-                          },
-                        ),
+                        builder: (context) => Dashboard(user: ''),
                       ),
                     );
                   },
