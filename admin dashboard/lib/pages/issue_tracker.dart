@@ -100,14 +100,14 @@ class _IssueTrackerState extends State<IssueTracker> {
                       children: [
                         ProfileCard(
                           profileName: "Citizen Reporter",
-                          imgpath: "images/citizen.jpeg",
+                          imgpath: "assets/images/citizen.jpeg",
                           name: "Diya Singla",
                           email: "diya@gmail.com",
                           phno: "+911234567890",
                         ),
                         ProfileCard(
                           profileName: "Assigned Department",
-                          imgpath: "images/officer.jpeg",
+                          imgpath: "assets/images/officer.jpeg",
                           name: "SDMC",
                           email: "sdmc@gmail.com",
                           phno: "+911234567890",
@@ -354,7 +354,7 @@ class _IssueTrackerState extends State<IssueTracker> {
                                         ),
                                         child: Container(
                                           child: Image.asset(
-                                            'images/pothole1.jpg', // Replace with the actual path to your image
+                                            'assets/images/pothole1.jpg', // Replace with the actual path to your image
                                             width: 400,
                                             height: 200,
                                           ),
@@ -366,7 +366,7 @@ class _IssueTrackerState extends State<IssueTracker> {
                                       ),
                                       child: Container(
                                         child: Image.asset(
-                                          'images/pothole2.jpg', // Replace with the actual path to your image
+                                          'assets/images/pothole2.jpg', // Replace with the actual path to your image
                                           width: 400,
                                           height: 200,
                                         ),

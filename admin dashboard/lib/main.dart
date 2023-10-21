@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dashboard/const.dart';
 import 'package:flutter_dashboard/pages/home/splash.dart';
+import 'package:flutter_dashboard/pages/login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.light, // Change to light mode
       ),
       home: const MyHomePage(),
-      //home: const LoginPage(),
+      //home: LoginPage(),
     );
   }
 }
