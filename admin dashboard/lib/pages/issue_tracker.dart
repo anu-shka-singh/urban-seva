@@ -36,10 +36,10 @@ class _IssueTrackerState extends State<IssueTracker> {
 
   List<String> time = [
     '8th Oct at 2:40PM',
-    '9th Oct at 4:00PM',
-    '11th Oct at 5:30PM',
-    '11th Oct at 8:00PM',
-    '12th Oct at 12:15PM',
+    '',
+    '',
+    '',
+    '',
   ];
 
   void _onTaskCompleted(int index) {
@@ -90,14 +90,14 @@ class _IssueTrackerState extends State<IssueTracker> {
                             "Pothole Issue",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 50,
+                              fontSize:35,
                             ),
                           ),
                           Text(
                             "Issue ID: #227",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 30,
+                              fontSize: 25,
                               color: Colors.grey,
                             ),
                           ),
@@ -112,7 +112,7 @@ class _IssueTrackerState extends State<IssueTracker> {
                       child: Text(
                         "A whole stretch of 1KM road is covered with potholes in subhash nagar block J making it difficult for people with two wheelers to commute.",
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
                         textAlign: TextAlign.left,
@@ -126,14 +126,14 @@ class _IssueTrackerState extends State<IssueTracker> {
                       children: [
                         ProfileCard(
                           profileName: "Citizen Reporter",
-                          imgpath: "admin dashboard/assets/images/citizen.jpeg",
+                          imgpath: "images/citizen.jpeg",
                           name: "Diya Singla",
                           email: "diya@gmail.com",
                           phno: "+911234567890",
                         ),
                         ProfileCard(
                           profileName: "Assigned Department",
-                          imgpath: "admin dashboard/assets/images/officer.jpeg",
+                          imgpath: "images/officer.jpeg",
                           name: "SDMC",
                           email: "sdmc@gmail.com",
                           phno: "+911234567890",
@@ -297,7 +297,7 @@ class _IssueTrackerState extends State<IssueTracker> {
                                                               const TextStyle(
                                                             fontWeight:
                                                                 FontWeight.bold,
-                                                            fontSize: 20,
+                                                            fontSize: 14,
                                                           ),
                                                         ),
                                                         Text(
@@ -313,7 +313,7 @@ class _IssueTrackerState extends State<IssueTracker> {
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .w600,
-                                                                  fontSize: 16),
+                                                                  fontSize: 12),
                                                         ),
                                                       ],
                                                     ),
@@ -359,11 +359,11 @@ class _IssueTrackerState extends State<IssueTracker> {
                                 "Attached Images",
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 20,
+                                  fontSize: 16,
                                 ),
                               ),
                               Divider(
-                                color: Colors.black,
+                                color: Colors.black.withOpacity(0.4),
                               ),
                               Row(
                                 mainAxisAlignment:
@@ -373,83 +373,33 @@ class _IssueTrackerState extends State<IssueTracker> {
                                     padding: const EdgeInsets.only(
                                         left: 20, right: 20),
                                     child: Card(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10),
+                                        ),
+                                        child: Container(
+                                          child: Image.asset(
+                                            'images/pothole1.jpg', // Replace with the actual path to your image
+                                            width: 400,
+                                            height: 200,
+                                          ),
+                                        )
+
+                                    ),
+                                  ),
+                                  Card(
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(10),
                                       ),
                                       child: Container(
-                                        width: 200,
-                                        height: 200,
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.rectangle,
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          color: Colors.blue,
+                                        child: Image.asset(
+                                          'images/pothole2.jpg', // Replace with the actual path to your image
+                                          width: 400,
+                                          height: 200,
                                         ),
-                                        child: Icon(
-                                          Icons.person,
-                                          size: 30,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ),
+                                      )
+
                                   ),
-                                  Card(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    child: Container(
-                                      width: 200,
-                                      height: 200,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.rectangle,
-                                        borderRadius: BorderRadius.circular(10),
-                                        color: Colors.blue,
-                                      ),
-                                      child: Icon(
-                                        Icons.person,
-                                        size: 30,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                  Card(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    child: Container(
-                                      width: 200,
-                                      height: 200,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.rectangle,
-                                        borderRadius: BorderRadius.circular(10),
-                                        color: Colors.blue,
-                                      ),
-                                      child: Icon(
-                                        Icons.person,
-                                        size: 30,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                  Card(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    child: Container(
-                                      width: 200,
-                                      height: 200,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.rectangle,
-                                        borderRadius: BorderRadius.circular(10),
-                                        color: Colors.blue,
-                                      ),
-                                      child: Icon(
-                                        Icons.person,
-                                        size: 30,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
+
                                 ],
                               ),
                             ],
@@ -502,10 +452,14 @@ class ProfileCard extends StatelessWidget {
                 child: Text(
                   profileName,
                   style: TextStyle(
-                    fontSize: 30,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+              ),
+              Divider(
+                color: Colors.black.withOpacity(0.3), // Set the color of the line
+                thickness: 1, // Set the thickness of the line
               ),
               Padding(
                 padding: const EdgeInsets.only(
@@ -515,7 +469,7 @@ class ProfileCard extends StatelessWidget {
                     CircleAvatar(
                       backgroundImage: AssetImage(
                           imgpath), // Replace with the actual image path
-                      radius: 40,
+                      radius: 25,
                     ),
                     SizedBox(
                       width: 20,
@@ -526,7 +480,7 @@ class ProfileCard extends StatelessWidget {
                         Text(
                           name,
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize:16,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -536,7 +490,7 @@ class ProfileCard extends StatelessWidget {
                         Text(
                           email,
                           style: TextStyle(
-                            fontSize: 15,
+                            fontSize: 13,
                             fontWeight: FontWeight.bold,
                             color: Colors.grey,
                           ),
@@ -544,7 +498,7 @@ class ProfileCard extends StatelessWidget {
                         Text(
                           phno,
                           style: TextStyle(
-                            fontSize: 15,
+                            fontSize: 13,
                             fontWeight: FontWeight.bold,
                             color: Colors.grey,
                           ),
