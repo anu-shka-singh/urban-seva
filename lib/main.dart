@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
         primaryColor: const Color(0xFF21222D),
       ),
       title: 'Urban Seva',
-      home: const MyHomePage(title: "Urban Seva"),
+      home: const MyHomePage(),
       debugShowCheckedModeBanner: false,
     );
   }
