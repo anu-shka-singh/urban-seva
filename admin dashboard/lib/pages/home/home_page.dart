@@ -17,9 +17,9 @@ class HomePage extends StatelessWidget {
         );
 
     return SizedBox(
-        height: MediaQuery.of(context).size.height,
-        child: SingleChildScrollView(
-            child: Padding(
+      height: MediaQuery.of(context).size.height,
+      child: SingleChildScrollView(
+        child: Padding(
           padding: EdgeInsets.symmetric(
               horizontal: Responsive.isMobile(context) ? 15 : 18),
           child: Column(
@@ -37,6 +37,8 @@ class HomePage extends StatelessWidget {
               _height(context),
             ],
           ),
-        )));
+        ),
+      ),
+    );
   }
 }

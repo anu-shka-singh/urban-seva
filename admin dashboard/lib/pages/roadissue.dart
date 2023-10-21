@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../widgets/menu.dart';
+import 'issue_tracker.dart';
 
 class RoadTransportationPage extends StatefulWidget {
   @override
@@ -13,11 +14,31 @@ class _RoadTransportationPageState extends State<RoadTransportationPage> {
   List<String> zones = ['All Zones', 'Zone A', 'Zone B', 'Zone C', 'Zone D'];
 
   List<Map<String, String>> issues = [
-    {'name': 'Pothole Issue', 'area': 'Block 14, Tilak Nagar', 'date': 'Oct 15, 2023'},
-    {'name': 'Under Construction Roads', 'area': 'Block 23, Tilak Nagar', 'date': 'Oct 10, 2023'},
-    {'name': 'Damaged Roads', 'area': 'Block 2, Subhash Nagar', 'date': 'Oct 5, 2023'},
-    {'name': 'Pothole Issue', 'area': 'Bus Route 3, Hari Nagar', 'date': 'Oct 2, 2023'},
-    {'name': 'Road Sign Missing', 'area': 'Street C, Rajouri Garden', 'date': 'Sep 28, 2023'},
+    {
+      'name': 'Pothole Issue',
+      'area': 'Block 14, Tilak Nagar',
+      'date': 'Oct 15, 2023'
+    },
+    {
+      'name': 'Under Construction Roads',
+      'area': 'Block 23, Tilak Nagar',
+      'date': 'Oct 10, 2023'
+    },
+    {
+      'name': 'Damaged Roads',
+      'area': 'Block 2, Subhash Nagar',
+      'date': 'Oct 5, 2023'
+    },
+    {
+      'name': 'Pothole Issue',
+      'area': 'Bus Route 3, Hari Nagar',
+      'date': 'Oct 2, 2023'
+    },
+    {
+      'name': 'Road Sign Missing',
+      'area': 'Street C, Rajouri Garden',
+      'date': 'Sep 28, 2023'
+    },
   ];
 
   @override
@@ -43,7 +64,8 @@ class _RoadTransportationPageState extends State<RoadTransportationPage> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 30.0, vertical: 10.0),
                   child: DropdownButton<String>(
                     value: selectedZone,
                     onChanged: (value) {
@@ -61,28 +83,38 @@ class _RoadTransportationPageState extends State<RoadTransportationPage> {
                 ),
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0), // Additional padding for the entire ListView
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 25.0,
+                        vertical:
+                            5.0), // Additional padding for the entire ListView
                     child: ListView.builder(
                       itemCount: issues.length,
                       itemBuilder: (context, index) {
                         final issue = issues[index];
-                        if (selectedZone != 'All Zones' && issue['area'] != selectedZone) {
+                        if (selectedZone != 'All Zones' &&
+                            issue['area'] != selectedZone) {
                           return Container(); // Skip items that don't match the selected zone
                         }
                         return Card(
                           elevation: 4, // Add elevation
-                          margin: EdgeInsets.all(10), // Add padding to each Card
+                          margin:
+                              EdgeInsets.all(10), // Add padding to each Card
                           child: ListTile(
                             title: Text(issue['name']!),
-                            subtitle: Text('Area: ${issue['area']}, Date: ${issue['date']}'),
+                            subtitle: Text(
+                                'Area: ${issue['area']}, Date: ${issue['date']}'),
                             trailing: Icon(Icons.arrow_forward),
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => IssueTracker()),
+                            ),
                           ),
                         );
                       },
                     ),
                   ),
                 ),
-
               ],
             ),
           ),
