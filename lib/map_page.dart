@@ -125,6 +125,28 @@ class _MapScreenState extends State<MapScreen> {
                   iconSize: 31,
                 ),
               ),
+              Marker(
+                point: const LatLng(28.557020, 77.326240),
+                width: 80,
+                height: 80,
+                child: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.water_drop),
+                  color: Colors.blue,
+                  iconSize: 31,
+                ),
+              ),
+              Marker(
+                point: const LatLng(28.549892, 77.328524),
+                width: 80,
+                height: 80,
+                child: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.water_drop),
+                  color: Colors.blue,
+                  iconSize: 31,
+                ),
+              ),
 
               Marker(
                 point: const LatLng(28.652972, 77.133432),
@@ -168,6 +190,61 @@ class _MapScreenState extends State<MapScreen> {
                   onPressed: () {},
                   icon: const Icon(Icons.add_road),
                   color: Colors.black,
+                  iconSize: 31,
+                ),
+              ),
+              Marker(
+                point: const LatLng(28.560570, 77.363197),
+                width: 80,
+                height: 80,
+                child: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.add_road),
+                  color: Colors.black,
+                  iconSize: 31,
+                ),
+              ),
+              Marker(
+                point: const LatLng(28.587362, 77.313053),
+                width: 80,
+                height: 80,
+                child: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.add_road),
+                  color: Colors.black,
+                  iconSize: 31,
+                ),
+              ),
+              Marker(
+                point: const LatLng(28.547329, 77.337370),
+                width: 80,
+                height: 80,
+                child: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.delete),
+                  color: Colors.redAccent,
+                  iconSize: 31,
+                ),
+              ),
+              Marker(
+                point: const LatLng(28.566257, 77.379015),
+                width: 80,
+                height: 80,
+                child: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.delete),
+                  color: Colors.redAccent,
+                  iconSize: 31,
+                ),
+              ),
+              Marker(
+                point: const LatLng(28.595200, 77.339851),
+                width: 80,
+                height: 80,
+                child: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.delete),
+                  color: Colors.redAccent,
                   iconSize: 31,
                 ),
               ),
@@ -231,6 +308,28 @@ class _MapScreenState extends State<MapScreen> {
 
               Marker(
                 point: const LatLng(28.639225, 77.073515),
+                width: 80,
+                height: 80,
+                child: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.flash_on),
+                  color: Colors.green,
+                  iconSize: 31,
+                ),
+              ),
+              Marker(
+                point: const LatLng(28.532481,77.347409),
+                width: 80,
+                height: 80,
+                child: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.flash_on),
+                  color: Colors.green,
+                  iconSize: 31,
+                ),
+              ),
+              Marker(
+                point: const LatLng(28.536703, 77.438106),
                 width: 80,
                 height: 80,
                 child: IconButton(
